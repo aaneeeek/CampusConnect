@@ -1,0 +1,23 @@
+services:
+
+  campus_app:
+    build: .
+    container_name: campus_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: DB_USER
+      POSTGRES_PASSWORD: DB_PASSWORD
+      POSTGRES_DB: DB_NAME
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
