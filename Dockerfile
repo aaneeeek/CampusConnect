@@ -4,22 +4,21 @@ FROM tomcat:10.1-jdk17
 # Install bash tools (optional)
 RUN apt-get update && apt-get install -y unzip
 
-# Set workdir
-WORKDIR /usr/local/tomcat
+WORKDIR /
 
 # Copy source code
-COPY src /tmp/src
+COPY /src /workspace/src
 
-# Compile Java classes
-RUN mkdir -p /tmp/classes && \
-    javac -cp /usr/local/tomcat/lib/servlet-api.jar -d /tmp/classes /tmp/src/main/java/controller/*.java
+COPY command.sh /temp/command.sh
 
-# Copy compiled classes into Tomcat ROOT
-RUN mkdir -p webapps/ROOT/WEB-INF/classes && \
-    cp -r /tmp/classes/* webapps/ROOT/WEB-INF/classes/
+COPY /src/main/webapp/WEB-INF/lib/postgresql-42.7.10.jar /usr/local/tomcat/lib
+
+RUN sed -i 's/\r$//' /temp/command.sh
+
+RUN chmod +x temp/command.sh
 
 # Expose port
 EXPOSE 8080
 
 # Start Tomcat
-CMD ["catalina.sh", "run"]
+CMD ["/temp/command.sh"]

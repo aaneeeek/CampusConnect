@@ -5,8 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.ConnectDatabase;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 /**
  * Servlet implementation class connect
@@ -31,7 +34,8 @@ public class connect extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-        out.println("<h1>hello world</h1>");
+        out.println("<h1>hello world hh</h1>");
+        Connection connection = ConnectDatabase.getConnection();
 		}
 
 	/**
