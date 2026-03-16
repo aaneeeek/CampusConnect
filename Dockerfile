@@ -13,6 +13,10 @@ COPY command.sh /temp/command.sh
 
 COPY /src/main/webapp/WEB-INF/lib/postgresql-42.7.10.jar /usr/local/tomcat/lib
 
+COPY /src/main/webapp/META-INF/context.xml /usr/local/tomcat/conf/context.xml
+
+#RUN apt-get update && apt-get install -y inotify-tools
+
 RUN sed -i 's/\r$//' /temp/command.sh
 
 RUN chmod +x temp/command.sh
