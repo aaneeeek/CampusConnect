@@ -34,7 +34,7 @@ public class connect extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-        out.println("<h1>helvvvfyesssovdsfvd22</h1>");
+        out.println("<h1>hello world</h1>");
         Connection connection = ConnectDatabase.getConnection();
 		}
 
