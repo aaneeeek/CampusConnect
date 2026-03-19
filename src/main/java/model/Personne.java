@@ -1,16 +1,17 @@
 package model;
 
+import java.sql.Date;
+
 public abstract class Personne {
-String nom;
-String prenom;
-String mot_de_passe;
-public Personne(String nom, String prenom, String mot_de_passe) {
-	this.nom = nom;
-	this.prenom = prenom;
-	this.mot_de_passe = mot_de_passe;
-}
-public abstract void SeConnecter();
-public abstract void CalculMoyenne();
-public abstract void VoirEdt();
+	public String nom, prenom, mot_de_passe, idPersonne;
+	public Date date_naissance;
+	
+	public abstract void SeConnecter();
+	public abstract void CalculMoyenne();
+	public abstract void VoirEdt();
+	static String generateIdPersonne() {
+			
+			return "";
+		}
 
 }

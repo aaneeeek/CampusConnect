@@ -1,21 +1,21 @@
 package model;
 
 public class Groupe {
-private String nom_groupe;
-private int volume_horaire;
-private int capacite;
-
-public Groupe(String nom_groupe, int volume_horaire, int capacite) {
-	this.nom_groupe=nom_groupe;
-	this.volume_horaire=volume_horaire;
-	this.capacite = capacite;
-}
-
-public int CapaciteGroupe() {
+	public String nom_groupe;
+	public int volume_horaire;
+	public int capacite;
 	
-}
-
-public void AssiterSeance() {
+	public Groupe(String nom_groupe, int volume_horaire, int capacite) {
+		this.nom_groupe=nom_groupe;
+		this.volume_horaire=volume_horaire;
+		this.capacite = capacite;
+	}
 	
-}
+		public int CapaciteGroupe() {
+			return 0;
+		}
+	
+	public void AssiterSeance() {
+		
+	}
 }
