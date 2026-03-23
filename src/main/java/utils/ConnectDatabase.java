@@ -9,6 +9,12 @@ public class ConnectDatabase {
 	private static String password = "DB_PASSWORD";
 	
 	public static Connection getConnection() {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Connection connection = null;
 		try {
 			connection = DriverManager.getConnection(url, user, password);

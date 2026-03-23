@@ -7,11 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import utils.ConnectDatabase;
+import utils.UtilityCls;
 
 public class Enseignant extends Personne{
 	public String statut, departement, idEnseignant;
 	private static Connection connection = ConnectDatabase.getConnection();
-	public Enseignant(String nom, String prenom, Date date_naissance, String mot_de_passe, String statut, String departement, String idPersonne, String idEnseignant) {
+	public Enseignant(String nom, String prenom, Date date_naissance, String mot_de_passe, String statut, String departement, String idPersonne, String idEnseignant) throws SQLException {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mot_de_passe = mot_de_passe;
@@ -52,9 +53,9 @@ public class Enseignant extends Personne{
 		return enseignant;
 	}
 	
-	public static String generateIdEnseignant() {
+	public static String generateIdEnseignant() throws SQLException {
 		
-		return "";
+		return UtilityCls.generateId(connection, "enseignant", "id_enseignant");
 	}
 	
 	public void RemplirNote() {

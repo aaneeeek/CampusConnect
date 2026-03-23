@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y unzip
 WORKDIR /
 
 # Copy source code
-COPY /src /workspace/src
+COPY /src/main/java /workspace/src/main/java
 
 COPY command.sh /temp/command.sh
 

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import utils.ConnectDatabase;
 
@@ -13,7 +14,7 @@ public class Etudiant extends Personne{
 	public int niveau;
 	public String filiere;
 	private static Connection connection = ConnectDatabase.getConnection();
-	public Etudiant(String nom, String prenom, String mot_de_passe, Date date_naissance, String idPersonne, String matricule, int niveau, String filiere) {
+	public Etudiant(String nom, String prenom, String mot_de_passe, Date date_naissance, String idPersonne, String matricule, int niveau, String filiere) throws SQLException {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mot_de_passe = mot_de_passe;
@@ -25,9 +26,29 @@ public class Etudiant extends Personne{
 	    else {this.idPersonne = idPersonne;}
 	}
 	
+	public static ArrayList<Etudiant> getListeEtudiant() throws SQLException {
+		ArrayList<Etudiant> liste = new ArrayList<>();
+		String sql = "SELECT personne.id_personne, nom, prenom, date_naissance, mot_de_passe, matricule, niveau, filiere FROM etudiant JOIN personne ON etudiant.id_personne = personne.id_personne";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			liste.add(new Etudiant(
+					rs.getString("nom"),
+					rs.getString("prenom"),
+					rs.getString("mot_de_passe"),
+					rs.getDate("date_naissance"),
+					rs.getString("id_personne"),
+					rs.getString("matricule"),
+					rs.getInt("niveau"),
+					rs.getString("filiere")
+					));
+		}
+		return liste;
+	}
+	
 	public static Etudiant getEtudiant(String idPersonne, String matricule) throws SQLException {
 		Etudiant etudiant = null;
-		String sql = "SELECT personne.id_personne, nom, prenom, data_naissance, mot_de_passe, matricule, niveau, filiere FROM etudiant JOIN personne ON etudiant.id_personne = personne.id_personne AND ";
+		String sql = "SELECT personne.id_personne, nom, prenom, date_naissance, mot_de_passe, matricule, niveau, filiere FROM etudiant JOIN personne ON etudiant.id_personne = personne.id_personne AND ";
 		sql += matricule.contentEquals("")?"personne.id_personne = ?":"matricule = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		if (matricule.contentEquals("")) {stmt.setString(1, idPersonne);}

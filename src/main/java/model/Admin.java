@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import utils.UtilityCls;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import utils.ConnectDatabase;
 public class Admin extends Personne {
 	public String idAdmin;
 	private static Connection connection = ConnectDatabase.getConnection();
-	public Admin(String nom, String prenom, String mot_de_passe, Date date_naissance, String idPersonne, String idAdmin) {
+	public Admin(String nom, String prenom, String mot_de_passe, Date date_naissance, String idPersonne, String idAdmin) throws SQLException {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mot_de_passe = mot_de_passe;
@@ -55,18 +56,18 @@ public class Admin extends Personne {
 	}
 	
 	public Enseignant AjouterEnseignant(String nom, String prenom, Date date_naissance, String mot_de_passe, String statut, String departement) throws SQLException {
-			String id_enseignant = Enseignant.generateIdEnseignant();
-			String id_personne = generateIdPersonne();
-			this.CreerPersonne(nom, prenom, mot_de_passe, date_naissance, id_personne); // creates person before creating corresponding teacher
-			String create_enseignant_command = "INSERT INTO enseignant (id_enseignant, statut, departement, id_personne) VALUES (?, ?, ?, ?)";
-			PreparedStatement create_enseignant_stmt = connection.prepareStatement(create_enseignant_command);
-			create_enseignant_stmt.setString(1,  id_enseignant);
-			create_enseignant_stmt.setString(2,  statut);
-			create_enseignant_stmt.setString(3,  departement);
-			create_enseignant_stmt.setString(4,  id_personne);
-			create_enseignant_stmt.executeUpdate();
-			return new Enseignant(nom, prenom, date_naissance, mot_de_passe, statut, departement, id_personne, id_enseignant);
-		}
+		String id_enseignant = Enseignant.generateIdEnseignant();
+		String id_personne = generateIdPersonne();
+		this.CreerPersonne(nom, prenom, mot_de_passe, date_naissance, id_personne); // creates person before creating corresponding teacher
+		String create_enseignant_command = "INSERT INTO enseignant (id_enseignant, statut, departement, id_personne) VALUES (?, ?, ?, ?)";
+		PreparedStatement create_enseignant_stmt = connection.prepareStatement(create_enseignant_command);
+		create_enseignant_stmt.setString(1,  id_enseignant);
+		create_enseignant_stmt.setString(2,  statut);
+		create_enseignant_stmt.setString(3,  departement);
+		create_enseignant_stmt.setString(4,  id_personne);
+		create_enseignant_stmt.executeUpdate();
+		return new Enseignant(nom, prenom, date_naissance, mot_de_passe, statut, departement, id_personne, id_enseignant);
+	}
 
 	public static Admin getAdmin(String idAdmin, String idPersonne) throws SQLException{
 		/*
@@ -108,9 +109,8 @@ public class Admin extends Personne {
 		
 	}
 	
-	static String generateIdAdmin() {
-			
-			return "";
+	static String generateIdAdmin() throws SQLException {
+			return UtilityCls.generateId(connection, "administrateur", "id_administrateur");
 		}
 	
 	public void ModifierEnseignant() {

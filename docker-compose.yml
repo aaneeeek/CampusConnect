@@ -6,7 +6,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./src:/workspace/src
+      - ./src/main/java:/workspace/src/main/java
+      - ./src/main/webapp:/usr/local/tomcat/webapps/ROOT
       - classes:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes
     depends_on:
       - db

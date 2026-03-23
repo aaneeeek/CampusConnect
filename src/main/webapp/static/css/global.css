@@ -1,0 +1,37 @@
+
+
+.form-button{
+    padding: 7px;
+    border-radius: 5px;
+    color: white;
+    background-color: darkblue;
+    border: none;
+    margin-top: 15px;
+}
+
+label{
+    color: darkblue;
+    font-weight: 800;
+    padding: 3px;
+    font-size: 17px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], select{
+    border-radius: 8px;
+    padding: 5px;
+    border:2px solid darkblue;
+    outline: none;
+    appearance: none;
+    width: 100%;
+}
+
+@media (width<=725px) {
+    label{
+        font-size: 14px;
+        
+    }
+}
+input[type="radio"]{
+    width: 20px;
+}
