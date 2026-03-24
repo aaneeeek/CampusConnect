@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import utils.ConnectDatabase;
 import utils.UtilityCls;
@@ -23,6 +24,25 @@ public class Enseignant extends Personne{
 		this.idPersonne = idPersonne.contentEquals("")?generateIdPersonne():idPersonne;
 	}
 	
+	public static ArrayList<Enseignant> getListeEnseignant() throws SQLException{
+		ArrayList<Enseignant> listeEnseignant = new ArrayList<>();
+		String sql = "SELECT id_enseignant, statut, departement, personne.id_personne, nom, prenom, date_naissance, mot_de_passe FROM enseignant JOIN personne ON enseignant.id_personne = personne.id_personne";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			listeEnseignant.add(new Enseignant(
+					rs.getString("nom"),
+					rs.getString("prenom"),
+					rs.getDate("date_naissance"),
+					rs.getString("mot_de_passe"),
+					rs.getString("statut"),
+					rs.getString("departement"),
+					rs.getString("id_personne"),
+					rs.getString("id_enseignant")
+					));
+		}
+		return listeEnseignant;
+	}
 	public static Enseignant getEnseignant(String idEnseignant, String idPersonne) throws SQLException {
 		Enseignant enseignant = null;
 		String sql = "SELECT id_enseignant, statut, departement, personne.id_personne, nom, prenom, date_naissance, mot_de_passe FROM enseignant JOIN personne ON enseignant.id_personne = personne.id_personne AND ";
