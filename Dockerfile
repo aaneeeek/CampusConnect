@@ -9,6 +9,8 @@ WORKDIR /
 # Copy source code
 COPY /src/main/java /workspace/src/main/java
 
+RUN mkdir -p /temp
+
 COPY command.sh /temp/command.sh
 
 COPY /src/main/webapp/WEB-INF/lib/postgresql-42.7.10.jar /usr/local/tomcat/lib

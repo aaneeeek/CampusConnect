@@ -8,7 +8,10 @@ services:
     volumes:
       - ./src/main/java:/workspace/src/main/java
       - ./src/main/webapp:/usr/local/tomcat/webapps/ROOT
+      - ./src/main/webapp/META-INF/context.xml:/usr/local/tomcat/conf/context.xml
       - classes:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes
+    stdin_open: true
+    tty: true
     depends_on:
       - db
 

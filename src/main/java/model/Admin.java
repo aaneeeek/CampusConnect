@@ -95,7 +95,7 @@ public class Admin extends Personne {
 					rs.getString("mot_de_passe"),
 					rs.getDate("date_naissance"),
 					rs.getString("id_personne"),
-					rs.getString("id_personne")
+					rs.getString("id_administrateur")
 					);
 			}
 		return admin;	
@@ -134,12 +134,7 @@ public class Admin extends Personne {
 	public void SupprimerSalle() {
 		
 	}
-	@Override
-	public void SeConnecter() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void CalculMoyenne() {
 		// TODO Auto-generated method stub

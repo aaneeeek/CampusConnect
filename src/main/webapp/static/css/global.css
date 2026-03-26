@@ -8,6 +8,14 @@
     border: none;
     margin-top: 15px;
 }
+.form-button:hover{
+    padding: 10px;
+    border: double 2px darkblue;
+}
+
+a{
+    text-decoration: none;
+}
 
 label{
     color: darkblue;
@@ -33,5 +41,6 @@ input[type="text"], input[type="password"], input[type="number"], input[type="da
     }
 }
 input[type="radio"]{
-    width: 20px;
+    width: 15px;
+    color: darkblue;
 }

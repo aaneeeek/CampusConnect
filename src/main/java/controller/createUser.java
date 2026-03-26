@@ -1,6 +1,6 @@
 package controller;
 import utils.ConnectDatabase;
-
+import utils.UtilityCls;
 import jakarta.servlet.ServletException;
 import model.Admin;
 import model.Enseignant;
@@ -23,11 +23,21 @@ public class createUser extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-;		request.getRequestDispatcher("/WEB-INF/view/create_user.jsp").forward(request, response);
+		try {
+			boolean isLoggedIn = UtilityCls.permission("administrateur", "", request.getSession(false));
+			if (isLoggedIn){
+				request.getRequestDispatcher("/WEB-INF/view/create_user.jsp").forward(request, response);
+			}else {
+				response.getWriter().println("<h1>Access Revoked</h1>");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		Admin admin;
 		String accountType = request.getParameter("type_compte");
 		try {

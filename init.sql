@@ -12,6 +12,10 @@ CREATE TABLE administrateur(
 	FOREIGN KEY (id_personne) REFERENCES personne(id_personne)
 );
 
+--CREATION DU PREMIER COMPTE ADMINISTRATEUR
+INSERT INTO personne VALUES ('1', 'Admin', 'Superuser', '2006-05-30', 'password');
+INSERT INTO administrateur VALUES ('1', '1');
+
 CREATE TABLE etudiant(
 	matricule VARCHAR(8) PRIMARY KEY,
 	niveau INTEGER,

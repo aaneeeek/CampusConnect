@@ -77,11 +77,7 @@ public class Etudiant extends Personne{
 	}
 
 	
-	@Override
-	public void SeConnecter() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public void CalculMoyenne() {
 		// TODO Auto-generated method stub
