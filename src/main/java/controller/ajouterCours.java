@@ -5,44 +5,35 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Enseignant;
-import model.Etudiant;
 import utils.UtilityCls;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
- * Servlet implementation class listeEnseignant
+ * Servlet implementation class ajouterCours
  */
-@WebServlet("/listeEnseignant")
-public class listeEnseignant extends HttpServlet {
+@WebServlet("/ajouterCours")
+public class ajouterCours extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public listeEnseignant() {
+    public ajouterCours() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
 			boolean isLoggedIn = UtilityCls.permission("administrateur", "", request.getSession(false));
 			if (isLoggedIn){
-				ArrayList<Enseignant> listeEnseignant = Enseignant.getListeEnseignant();
-				request.setAttribute("listeEnseignant", listeEnseignant);
-				request.getRequestDispatcher("/WEB-INF/view/liste_enseignant.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/view/create_cours.jsp").forward(request, response);
 			}else {
 				response.getWriter().println("<h1>Access Revoked</h1>");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			response.getWriter().println("<h1>Code: 500 SERVER ERROR<h1>");
 			e.printStackTrace();
 		}
 	}

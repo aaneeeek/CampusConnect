@@ -24,8 +24,8 @@ const studentForm = `
     const teacherForm = `
         <div class="split">
             <div class="input-div">
-                <label>Status</label>
-                <select name="status">
+                <label>Statut</label>
+                <select name="statut">
                     <option><option>
                     <option value="permanent">Permanent</option>
                     <option value="vacataire">Vacataire</option>
@@ -33,7 +33,7 @@ const studentForm = `
             </div>
             <div class="input-div">
                 <label>Department</label>
-                <input type="text">
+                <input type="text" name="departement">
             </div>
         <div>
         <button class="form-button" type="submit">Créer Compte</button>

@@ -11,12 +11,12 @@
     </head>
     </head>
     <body>
-        <h1>Campus Admin</h1>
+        <h1 class="paragraph" style="font-size: 35px;">Campus Admin</h1>
         <div class="main-section">
             <div class="main-elt">
                 <button class="elt">Gestion Etudiants</button>
                 <ul>
-                    <li>Liste d'étudiant</li>
+                    <li><a href="<%=response.encodeURL(request.getContextPath() +"/listeEtudiant") %>">Liste d'étudiant</a></li>
                     <li><a href="<%=response.encodeURL(request.getContextPath() +"/createUser") %>">Création de Compte Etudiant</a></li>
                 </ul>
             </div>
@@ -24,8 +24,8 @@
             <div class="main-elt">
                 <button class="elt">Gestion Enseignants</button>
                 <ul>
-                    <li>Liste d'étudiant</li>
-                    <li>Création de Compte Enseignant</li>
+                    <li><a href="<%=response.encodeURL(request.getContextPath() +"/listeEnseignant") %>">Liste d'enseignant</a></li>
+                    <li><a href="<%=response.encodeURL(request.getContextPath() +"/createUser") %>">Création de Compte Enseignant</a></li>
                     <li>Assignation de Cours</li>
                     <li>Assignation de groupes de Cours</li>
                 </ul>

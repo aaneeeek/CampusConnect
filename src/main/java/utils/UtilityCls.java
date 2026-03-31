@@ -36,7 +36,7 @@ public class UtilityCls {
 			if (!identifiant.contentEquals("")) {
 				if (type_compte.equals("etudiant")) {
 					Etudiant etudiant = (Etudiant) session.getAttribute("personne");
-					if (etudiant != null && etudiant.matricule == identifiant) {return true;}
+					if (etudiant != null && etudiant.getMatricule() == identifiant) {return true;}
 					else {return false;}
 				}else if (type_compte.equals("enseignant")) {
 					Enseignant enseignant = (Enseignant) session.getAttribute("personne");

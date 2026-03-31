@@ -17,6 +17,13 @@
     display: flex;
     flex-direction: column;
 }
+.paragraph{
+    color:darkblue;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .elt{
     text-align: center;
