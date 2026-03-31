@@ -102,8 +102,28 @@ public class Admin extends Personne {
 		return admin;	
 	}
 	
-	public void AjouterCours() {
-		
+	public void AjouterCours(String code_cours, String intituler, String description, int volume_horaire, int capacite, String idEnseignant) throws SQLException {
+		String sql = "INSERT INTO cours VALUES (?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, code_cours);
+		stmt.setString(2, intituler);
+		stmt.setString(3, description);
+		stmt.setInt(4, volume_horaire);
+		stmt.setInt(5, capacite);
+		stmt.setString(6, idEnseignant);
+		stmt.executeUpdate();
+	}
+	
+	public void ajouterGroupeCours(String nom_groupe, int volume_horaire, int capacite, String idGroupe, String idEnseignant, String code_cours) throws SQLException {
+		String sql = "INSERT INTO groupe VALUES (?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, idGroupe);
+		stmt.setString(2, nom_groupe);
+		stmt.setInt(3, volume_horaire);
+		stmt.setInt(4, capacite);
+		stmt.setString(5, idEnseignant);
+		stmt.setString(6, code_cours);
+		stmt.executeUpdate();
 	}
 	
 	public void DiviserCours() {
@@ -136,11 +156,6 @@ public class Admin extends Personne {
 		
 	}
 	
-	@Override
-	public void CalculMoyenne() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void VoirEdt() {

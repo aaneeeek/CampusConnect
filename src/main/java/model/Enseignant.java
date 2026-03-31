@@ -88,14 +88,6 @@ public class Enseignant extends Personne{
 		
 	}
 
-
-	
-	@Override
-	public void CalculMoyenne() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void VoirEdt() {
 		// TODO Auto-generated method stub

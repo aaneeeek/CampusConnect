@@ -48,7 +48,7 @@ public abstract class Personne {
 		
 		
 	}
-	public abstract void CalculMoyenne();
+	
 	public abstract void VoirEdt();
 	static String generateIdPersonne() throws SQLException {
 			return UtilityCls.generateId(pConnection, "personne", "id_personne");

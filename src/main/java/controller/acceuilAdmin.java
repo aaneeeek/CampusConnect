@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.UtilityCls;
+
 import java.io.IOException;
 
 /**
@@ -26,9 +28,20 @@ public class acceuilAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("################################" + request.getSession(false).getId());
-		System.out.println("################################" + request.getSession(false).getAttribute("type_compte"));
-		request.getRequestDispatcher("/WEB-INF/view/acceuil_admin.jsp").forward(request, response);
+		
+		try {
+			boolean isLoggedIn = UtilityCls.permission("administrateur", "", request.getSession(false));
+			if (isLoggedIn){
+				request.getRequestDispatcher("/WEB-INF/view/acceuil_admin.jsp").forward(request, response);
+				System.out.println("################################" + request.getSession(false).getId());
+				System.out.println("################################" + request.getSession(false).getAttribute("type_compte"));
+			}else {
+				response.getWriter().println("<h1>Access Revoked</h1>");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
