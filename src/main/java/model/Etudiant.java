@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 import utils.ConnectDatabase;
 
 public class Etudiant extends Personne{
-	public String matricule;
-	public int niveau;
-	public String filiere;
+	private String matricule;
+	private int niveau;
+	private String filiere;
 	private static Connection connection = ConnectDatabase.getConnection();
 	public Etudiant(String nom, String prenom, String mot_de_passe, Date date_naissance, String idPersonne, String matricule, int niveau, String filiere) throws SQLException {
 		this.nom = nom;
@@ -69,7 +70,13 @@ public class Etudiant extends Personne{
 		return etudiant;
 	}
 	
-	public void Sinscrire() {
+	public void Sinscrire(Inscrire i) throws SQLException {
+		String sql = "INSERT INTO groupe VALUES (?, ?, ,?. ?, ?, ?, ?) JOIN etudiant AND " ;
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, )
+		
+		
+		
 		
 	}
 	public void VoirNote() {
@@ -89,5 +96,24 @@ public class Etudiant extends Personne{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public String  getmatricule() {
+		return matricule;
+	}
+	public int getniveau() {
+		return niveau;
+	}
+	public String getfiliere() {
+		return filiere;
+	}
+	
+	public void  setniveau(int niveau) {
+		this.niveau = niveau;
+	}
+	public void setmatricule(String matricule) {
+		this.matricule = matricule ;
+	}
+	public void setfiliere (String filiere) {
+		this.filiere = filiere ;
+	}
 }

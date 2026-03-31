@@ -11,6 +11,10 @@ public class Groupe {
 		this.capacite = capacite;
 	}
 	
+		public Groupe() {
+		// TODO Auto-generated constructor stub
+	}
+
 		public int CapaciteGroupe() {
 			return 0;
 		}
