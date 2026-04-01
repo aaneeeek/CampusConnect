@@ -29,7 +29,7 @@
 			     %>
 			     		<tr>
 			     			<td>
-			     				<%= etudiant.matricule %>
+			     				<%= etudiant.getMatricule() %>
 			     			</td>
 			     			<td>
 			     				<%= etudiant.nom %>
@@ -38,7 +38,7 @@
 			     				<%= etudiant.prenom %>
 			     			</td>
 			     			<td>
-			     				<%= etudiant.filiere %>
+			     				<%= etudiant.getFiliere() %>
 			     			</td>
 			     		</tr>
 			     	
