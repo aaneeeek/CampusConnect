@@ -20,5 +20,23 @@ public class Cours {
 		Enseignant enseignant = null;
 		return enseignant;
 	}
-
+	
+	public String getCode_cours() {
+		return this.code_cours;
+	}
+	public String getIntituler() {
+		return this.intituler;
+	}
+	public String getDescription() {
+		return this.description;
+	}
+	public int getVolume_Horaire() {
+		return this.volume_horaire;
+	}
+	public int getCapacite() {
+		return this.capacite;
+	}
+	public int IdEnseignant() {
+		return this.idEnseignant;
+	}
 }

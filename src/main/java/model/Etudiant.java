@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+
 
 import utils.ConnectDatabase;
 
@@ -86,23 +88,31 @@ public class Etudiant extends Personne{
 		stmt.setInt(2, idGroupe);
 		stmt.executeUpdate();
 	}
-	public void VoirNote() throws SQLException {
+	public Map VoirNote() throws SQLException {
 		
-		ArrayList<Float> Liste_note = new ArrayList<>();
-		String sql = "SELECT note FROM inscrire JOIN groupe ON inscrire.id_groupe = groupe.id_groupe WHERE  inscrire.matricule = ?";
+		Map<String, Float> Liste_note = new HashMap<>();
+		String sql = "SELECT note, intituler FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, this.matricule);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-			Liste_note.add(rs.getFloat("note"));
+			Liste_note.put(rs.getString("intituler"), rs.getFloat("note"));
 		}
+		return Liste_note;
 	}
 
 
 	@Override
-	public void VoirEdt() {
-		// TODO Auto-generated method stub
-		
+	public Map VoirEdt(int idGroupe) throws SQLException {
+		Map<Integer, String> Liste_note = new HashMap<>();
+		String sql = "SELECT heure, jour FROM sceance JOIN salle ON salle.id_salle = sceance.id_salle JOIN WHERE sceance.id_groupe = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setInt(1, idGroupe);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			Liste_note.put(rs.getInt("heure"), rs.getString("jour"));
+		}
+		return Liste_note;
 	}
 	
 	public String getMatricule () {
@@ -123,6 +133,12 @@ public class Etudiant extends Personne{
 	}
 	public void setFiliere () {
 		this.filiere=filiere;
+	}
+
+	@Override
+	public void VoirEdt() throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
