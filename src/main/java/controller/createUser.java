@@ -38,10 +38,9 @@ public class createUser extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Admin admin;
 		String accountType = request.getParameter("type_compte");
 		try {
-			admin = new Admin("nom", "prenom", "mdp", new Date(System.currentTimeMillis()), "", "");
+			Admin admin = (Admin) request.getSession().getAttribute("personne");
 			if (accountType.contentEquals("student")) {
 				Etudiant etudiant = admin.CreerCompteEtudiant(
 						request.getParameter("nom"),

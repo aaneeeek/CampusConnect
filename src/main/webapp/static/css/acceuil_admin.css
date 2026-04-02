@@ -46,3 +46,15 @@ h1{
         grid-template-columns: 1fr;
     }
 }
+
+.nouveau{
+    color: darkblue;
+    background-color: rgb(39, 221, 221);
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: 700;
+}

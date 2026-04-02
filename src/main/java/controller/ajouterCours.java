@@ -54,22 +54,24 @@ public class ajouterCours extends HttpServlet {
 					);
 			Map<String, String[]> groupes = request.getParameterMap();
 			for (String key : groupes.keySet()) {
-				if (key.startsWith("groupe_")) {
-					String noGroupe = key.substring(7, 8);
+				if (key.startsWith("nom_groupe_")) {
+					String noGroupe = key.substring(11);
 					admin.ajouterGroupeCours(
 							request.getParameter("nom_groupe_" + noGroupe), 
 							Integer.parseInt(request.getParameter("volume_horraire_groupe_" + noGroupe)), 
 							Integer.parseInt(request.getParameter("capacite_groupe_" + noGroupe)), 
-							request.getParameter("code_cours") + noGroupe, 
-							request.getParameter("id_enseignant"), 
+							request.getParameter("code_cours") + "_" + noGroupe, 
+							request.getParameter("id_enseignant_" + noGroupe), 
 							request.getParameter("code_cours")
 						);
 				}
 			}
+			request.getRequestDispatcher("/WEB-INF/view/create_cours.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

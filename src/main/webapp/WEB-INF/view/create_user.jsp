@@ -10,6 +10,7 @@
     </head>
     </head>
     <body>
+        <span style="color: darkblue; font-weight:700; font-size:18px; padding: 8px; border-radius: 5px; margin: 4px; background-color:white; box-shadow:0px 0px 20px rgba(2, 2, 47, 0.386);"><a href="${pageContext.request.contextPath}/acceuilAdmin">&larr; Acceuil</a></span>
         <form method="post" action="">
             <div class="middle-form">
                 <p class="paragraph" style="font-size: 35px;">Formulaire de Création de Compte</p>
