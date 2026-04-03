@@ -35,7 +35,7 @@
                 <button class="elt">Gestion Cours</button>
                 <ul>
                     <li>Liste Cours</li>
-                    <li>Création de Cours</li>
+                    <li><a href="<%=response.encodeURL(request.getContextPath() +"/ajouterCours") %>">Création de Cours</a></li>
                     <li>Création de Groupe de Cours</li>
                     <li>Plannifier les sceances de cours</li>
                 </ul>
