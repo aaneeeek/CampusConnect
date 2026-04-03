@@ -1,10 +1,13 @@
 package model;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -48,9 +51,15 @@ public abstract class Personne {
 		
 	}
 	
-	public abstract void VoirEdt();
+	public abstract void VoirEdt() throws SQLException;
 	static String generateIdPersonne() throws SQLException {
 			return UtilityCls.generateId(pConnection, "personne", "id_personne");
 		}
+
+	public Map VoirEdt(int idGroupe) throws SQLException {
+		// TODO Auto-generated method stub
+		Map<Integer, String> Liste_note = new HashMap<>();
+		return Liste_note;
+	}
 
 }

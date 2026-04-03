@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+
 import utils.UtilityCls;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class Admin extends Personne {
 		    this.idAdmin = idAdmin;
 	    }
 	}
+	
 	
 	public void AssignerSalle() {
 		

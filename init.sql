@@ -76,3 +76,6 @@ CREATE TABLE sceance(
 	FOREIGN KEY (id_groupe) REFERENCES groupe(id_groupe),
 	FOREIGN KEY (id_salle) REFERENCES salle(id_salle)
 );
+
+SELECT note, intituler FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?\
+SELECT heure, jour,type_salle FROM sceance JOIN salle ON salle.id_salle = sceance.id_salle JOIN WHERE sceance.id_groupe = ?
