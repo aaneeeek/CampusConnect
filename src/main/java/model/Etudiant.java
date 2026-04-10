@@ -81,12 +81,12 @@ public class Etudiant extends Personne{
 		return etudiant;
 	}
 	
-	public void Sinscrire(int idGroupe) throws SQLException {
+	public void Sinscrire(String id_groupe) throws SQLException {
 		
 		String sql = "INSERT INTO inscrire (matricule, id_groupe) VALUES ( ?, ?)";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, matricule);
-		stmt.setInt(2, idGroupe);
+		stmt.setString(2, id_groupe);
 		stmt.executeUpdate();
 	}
 	public Map VoirNote() throws SQLException {
@@ -104,16 +104,16 @@ public class Etudiant extends Personne{
 
 
 	@Override
-	public Map VoirEdt(int idGroupe) throws SQLException {
-		Map<Integer, String> Liste_note = new HashMap<>();
+	public Map VoirEdt(Groupe g) throws SQLException {
+		Map<Integer, String> EDT = new HashMap<>();
 		String sql = "SELECT heure, jour FROM sceance JOIN salle ON salle.id_salle = sceance.id_salle JOIN WHERE sceance.id_groupe = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setInt(1, idGroupe);
+		stmt.setString(1, g.getidGroupe());
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
-			Liste_note.put(rs.getInt("heure"), rs.getString("jour"));
+			EDT.put(rs.getInt("heure"), rs.getString("jour"));
 		}
-		return Liste_note;
+		return EDT;
 	}
 	
 	public String getMatricule () {
@@ -141,5 +141,7 @@ public class Etudiant extends Personne{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

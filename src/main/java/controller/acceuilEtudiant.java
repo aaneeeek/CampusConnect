@@ -5,7 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Etudiant;
+import utils.UtilityCls;
+
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Servlet implementation class acceuilEtudiant
@@ -27,15 +31,46 @@ public class acceuilEtudiant extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().println("<h1>Acceuil Etudiant</h1>");
+//		response.getWriter().println("<h1>Acceuil Etudiant</h1>");
+//		request.getRequestDispatcher("/WEB-INf/view/etudiant.jsp").forward(request, response);
+		String action = request.getParameter("action");
+		String contentPage = null;
+		try {
+			boolean isLoggedIn = UtilityCls.permission("etudiant", "", request.getSession(false));
+			if (isLoggedIn){
+				if("sinscrire".equals(action)) {
+					contentPage= "/WEB-INF/view/etudiant.jsp";
+				}
+				request.setAttribute("contentPage", contentPage);
+				
+				request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);
+				System.out.println("################################" + request.getSession(false).getAttribute("type_compte"));
+			}else {
+				response.getWriter().println("<h1>Access Revoked</h1>");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Etudiant etudiant = (Etudiant) request.getSession().getAttribute("etudiant");
+		String action = request.getParameter("action");
+		String id_groupe = request.getParameter("id_groupe");
+		if("sinscrire".equals(action)){
+		try {
+			etudiant.Sinscrire(id_groupe);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		response.sendRedirect("acceuilEtudiant?action = sinscrire");
+	}
+	}
 	}
 
-}
+

@@ -56,10 +56,11 @@ public abstract class Personne {
 			return UtilityCls.generateId(pConnection, "personne", "id_personne");
 		}
 
-	public Map VoirEdt(int idGroupe) throws SQLException {
+	public Map VoirEdt(Groupe g) throws SQLException {
 		// TODO Auto-generated method stub
-		Map<Integer, String> Liste_note = new HashMap<>();
-		return Liste_note;
+		Map<Integer, String> EDT = new HashMap<>();
+		return EDT;
 	}
 
+	
 }
