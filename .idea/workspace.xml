@@ -5,7 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fadc2d0c-4eb4-4d59-afee-2231a687e0f5" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Inscrire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ajouterCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ajouterCours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/createUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/createUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/acceuil_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/acceuil_admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/create_cours.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/create_cours.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/create_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/create_user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/acceuil_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/acceuil_admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/javascript/create_cours.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/javascript/create_cours.js" afterDir="false" />
+>>>>>>> 69da004384934d678ed3ca91b9c5a2d5add08aa0
+>>>>>>> 6e13fd8f106f40370754166b49a61d9c8008f683
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +54,21 @@
     "last_opened_file_path": "C:/CODEPROJECTS/CampusConnect",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
+<<<<<<< HEAD
 }]]></component>
+=======
+}</component>
+<<<<<<< HEAD
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+=======
+>>>>>>> 69da004384934d678ed3ca91b9c5a2d5add08aa0
+>>>>>>> 6e13fd8f106f40370754166b49a61d9c8008f683
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

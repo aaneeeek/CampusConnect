@@ -8,5 +8,16 @@ public class Seance {
 		this.heure=heure;
 		this.jour=jour;
 	}
-
+	public String getHeure() {
+		return heure;
+	}
+	public String getJour() {
+		return jour;
+	}
+	public void setHeure(String heure ) {
+		this.heure=heure;
+	}
+	public void setJour(String jour ) {
+		this.jour=jour;
+	}
 }
