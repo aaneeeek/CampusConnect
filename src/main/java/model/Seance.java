@@ -20,4 +20,5 @@ public class Seance {
 	public void setJour(String jour ) {
 		this.jour=jour;
 	}
+	
 }

@@ -78,6 +78,25 @@ public class Enseignant extends Personne{
 		return UtilityCls.generateId(connection, "enseignant", "id_enseignant");
 	}
 	
+	public ArrayList<Groupe> getGroupesCours() throws SQLException{
+		ArrayList<Groupe> groupes = new ArrayList();
+		String sql = "SELECT * FROM groupe WHERE id_enseignant = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, idEnseignant);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			groupes.add(new Groupe(
+					rs.getString("nom_groupe"),
+					rs.getInt("volume_horraire"),
+					rs.getInt("capacite"),
+					rs.getString("id_groupe"),
+					rs.getString("id_enseignant"),
+					rs.getString("code_cours")
+					));
+		}
+		return groupes;
+	}
+	
 	public void RemplirNote() {
 		
 	}

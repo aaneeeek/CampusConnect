@@ -1,7 +1,7 @@
 package model;
 
 public class Groupe {
-	private String nom_groupe, code_cours, idGroupe, idEnseignant;
+	public String nom_groupe, code_cours, idGroupe, idEnseignant;
 	private int volume_horaire;
 	private int capacite;
 	

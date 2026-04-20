@@ -67,6 +67,25 @@ CREATE TABLE salle(
 	type_salle VARCHAR(20)
 );
 
+INSERT INTO salle VALUES 
+	('25BP1', 30, 'Salle de TP'),
+	('12BP1', 20, 'Salle de TP'),
+	('20BP1', 35, 'Salle de TP'),
+	('Atelier A1', 300, 'Salle de CM'),
+	('25BS2', 30, 'Salle de TP'),
+	('11BP1', 210, 'Salle de CM'),
+	('BP1', 30, 'Salle de TP'),
+	('25BP2', 30, 'Salle de TP'),
+	('05RS1', 30, 'Salle de TD'),
+	('06BP1', 30, 'Salle de TP'),
+	('Amphi 1100 I', 100, 'Salle de CM'),
+	('25CP1', 100, 'Salle de CM'),
+	('25BA1', 30, 'Salle de TP'),
+	('Amphi 1100 II', 150, 'Salle de CM'),
+	('07BP1', 30, 'Salle de TP'),
+	('05AP1', 30, 'Salle de TD'),
+	('16BS1', 30, 'Salle de TP');
+
 CREATE TABLE sceance(
 	id_sceance VARCHAR(20) PRIMARY KEY,
 	heure TIME,

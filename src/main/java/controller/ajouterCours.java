@@ -55,6 +55,7 @@ public class ajouterCours extends HttpServlet {
 			Map<String, String[]> groupes = request.getParameterMap();
 			for (String key : groupes.keySet()) {
 				if (key.startsWith("nom_groupe_")) {
+					System.out.println("new groupe");
 					String noGroupe = key.substring(11);
 					admin.ajouterGroupeCours(
 							request.getParameter("nom_groupe_" + noGroupe), 

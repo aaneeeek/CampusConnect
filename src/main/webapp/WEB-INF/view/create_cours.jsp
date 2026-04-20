@@ -59,15 +59,14 @@
                 <section style="position: relative;">
                     <p class="paragraph">Groupes de Cours</p>
                     <div id="groupes"></div>
-                    <button onclick="addGroupe(event)" class="nouveau">&plus; Nouveau</button>
+                    <button data-group-count="1" onclick="addGroupe(event)" class="nouveau">&plus; Nouveau</button>
                 </section><br><br>
                 <button class="form-button" style="position:absolute; right:10px; bottom:15px;" type="submit">Créer Cours</button>
             </div>
             
         </form>
         <script>
-            let groupeCount = 0;
-
+             let count = 0;
             const addGroupe = (e=null)=>{
                 if(e != null){
                     e.preventDefault();
@@ -79,19 +78,19 @@
                     <div class="split">
                         <div class="input-div">
                                 <label>Nom de Groupe</label>
-                                <input type="text" name="nom_groupe_${groupeCount}" required>
-                            </div>
+                                <input type="text" name="nom_groupe_` + count + `" required>
+                        </div>
                         <div class="input-div">
                             <label>Capacité du Groupe</label>
-                            <input type="number" name="capacite_groupe_${groupeCount}" required>
+                            <input type="number" name="capacite_groupe_` + count + `" required>
                         </div>
                         <div class="input-div">
                             <label>Volume Horraire</label>
-                            <input type="number" name="volume_horraire_groupe_${groupeCount}" required>
+                            <input type="number" name="volume_horraire_groupe_` + count + `" required>
                         </div>
                         <div class="input-div">
                             <label>Responsable</label>
-                            <select name="id_enseignant_${groupeCount}">
+                            <select name="id_enseignant_` + count + `">
                                 <option value=""></option>
                                 <% 
                                     if (listeEnseignant != null){
@@ -107,7 +106,8 @@
                         
                     </div>
                 `;
-                groupeCount += 1;
+                count += 1;
+                
             }
 
             addGroupe();
