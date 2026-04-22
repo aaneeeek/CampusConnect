@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<%@ page import="java.util.ArrayList, model.Enseignant, model.Groupe, model.Salle" %>
+		<script src="${pageContext.request.contextPath}/static/javascript/plannifier.js"></script>
 		<span style="color: darkblue; font-weight:700; font-size:18px; padding: 8px; border-radius: 5px; margin: 4px; background-color:white; box-shadow:0px 0px 20px rgba(2, 2, 47, 0.386);"><a href="${pageContext.request.contextPath}/acceuilAdmin">&larr; Acceuil</a></span>
 		<br><br>
 		<div class="whole">
@@ -19,7 +20,7 @@
 				if (listeEnseignant != null){
 					for (Enseignant enseignant : listeEnseignant){
 			%>
-				<div id="<%= enseignant.idEnseignant %>" onclick="listGroupes(event)"><%= enseignant.nom %> <%= enseignant.prenom %></div>
+				<div data-name="teacher" id="<%= enseignant.idEnseignant %>" onclick="listGroupes(event)"><%= enseignant.nom %> <%= enseignant.prenom %></div>
 			<%
 					}
 				}
@@ -27,28 +28,13 @@
 			</div>
 			<div>
 				<div class="days">
-					<span>Lundi</span>
-					<span>Mardi</span>
-					<span>Mercredi</span>
-					<span>Jeudi</span>
-					<span>Vendredi</span>
+					<span id="Lundi" onclick="setJour('Lundi')">Lundi</span>
+					<span id="Mardi" onclick="setJour('Mardi')">Mardi</span>
+					<span id="Mercredi" onclick="setJour('Mercredi')">Mercredi</span>
+					<span id="Jeudi" onclick="setJour('Jeudi')">Jeudi</span>
+					<span id="Vendredi" onclick="setJour('Vendredi')">Vendredi</span>
 				</div>
-				<br>
-				<div class="halls">
-					<%
-						for (Salle salle : Salle.getListeSalle()){
-					%>
-						<div>
-							<div class="name"><%= salle.idSalle %></div>
-							<div>
-								<span><%= salle.capacite %> Places</span>
-								<span><%= salle.type_salle %></span>
-							</div>
-						</div>
-					<%
-						}
-					%>	
-				</div>
+
 				<br>
 				<div class="groups" id="group-section">
 					<%
@@ -58,13 +44,10 @@
 								if (listeGroupes != null){
 									for (Groupe groupe : listeGroupes){
 					%>
-						<div style="display: none;" data-name="groups" data-id="<%= groupe.idEnseignant %>">
+						<div style="display: none;" data-name="groups" data-id="<%= groupe.idEnseignant %>" id="<%= groupe.idGroupe %>" onclick="setGroupe('<%= groupe.idGroupe %>')">
 							<span><%=groupe.getNom_groupe() %></span>
-							<span><%=groupe.CapaciteGroupe() %></span>
+							<span><%=groupe.CapaciteGroupe() %>P</span>
 						</div>
-						<script>
-							console.log("<%=groupe.getNom_groupe() %>");
-						</script>
 					<%
 									}
 								}
@@ -72,15 +55,54 @@
 						}
 					%>
 				</div>
+				<br>
+				<div style="height:fit-content; display: grid; grid-template-columns: 40px 1fr;">
+					<div style="height: 100%;">
+						<div style="height:48%; position: relative; background-color:aqua;" id="7:30-11:00" onclick="setHeure('7:30-11:00')">
+							<span style="position: absolute; top: 3px">7:30</span>
+							<span style="position: absolute; bottom: 3px">11:00</span>
+						</div><br>
+						<div style="height:48%; position: relative; background-color:aqua;" id="12:00-15:00" onclick="setHeure('12:00-15:00')">
+							<span style="position: absolute; top: 3px">12:00</span>
+							<span style="position: absolute; bottom: 3px">15:00</span>
+						</div>
+					</div>
+					
+					<div class="halls">
+						<%
+							for (Salle salle : Salle.getListeSalle()){
+						%>
+							<div id="<%= salle.idSalle %>" data-name="salle" onclick="setSalle('<%= salle.idSalle %>')">
+								<div class="name"><%= salle.idSalle %></div>
+								<div>
+									<span><%= salle.capacite %> Places</span><br>
+									<span><%= salle.type_salle %></span>
+								</div>
+							</div>
+						<%
+							}
+						%>	
+					</div>
+				</div>
+				<br>
+				
+			</div>
+			<br>
+			<div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; margin-top: 16px;">
+				<button style="padding: 8px; font-size: 16px; font-weight: 700; color: white; background-color: green; border: none; border-radius: 5px; box-shadow:0px 0px 20px rgba(2, 2, 47, 0.386);" onclick="setProgram()">Ajouter au Plan</button>
+				<button style="padding: 8px; font-size: 16px; font-weight: 700; color: white; background-color: green; border: none; border-radius: 5px; box-shadow:0px 0px 20px rgba(2, 2, 47, 0.386);" onclick="saveProgram()">Enregistrer</button>
 			</div>
 		</div>
 		<script>
 			function listGroupes(e){
 				console.log(e.target.id);
 				document.querySelectorAll(`[data-name="groups"]`).forEach(elt => {elt.style.display = "none"});
-				document.querySelectorAll('[data-id="' + e.target.id + '"]').forEach(elt => {console.log(e.target.id); elt.style.display = "inline-block"});
-				
+				document.querySelectorAll('[data-id="' + e.target.id + '"]').forEach(elt => {elt.style.display = "inline-block"});
+				document.querySelectorAll(`[data-name="teacher"]`).forEach(elt => {elt.style.backgroundColor = "rgb(98, 136, 198)"});
+				e.target.style.backgroundColor = 'darkblue';
 			}
 		</script>
+		
+
 	</body>
 </html>

@@ -6,12 +6,14 @@
     margin: auto;
     display: grid;
     grid-template-columns: 120px 1fr;
+    overflow-x: hidden;
 }
 
 .days{
     display: flex;
     flex-direction: row;
     width: 80%;
+    max-width: 750px;
     margin: auto;
     padding: 4px;
     background-color: white;
@@ -38,21 +40,24 @@
 }
 
 .halls{
-    max-width: 95%;
+    width: 95%;
+    max-width: 950px;
     overflow-x: scroll;
     width: min-content;
     display: grid;
-    grid-template-rows: 150px 150px 150px;
+    grid-template-rows: 150px 150px;
     column-gap: 3px;
     grid-auto-flow: column;
     row-gap: 3px;
     margin-left:40px ;
+    scroll-padding: 10px;
 }
 
 .groups{
     max-width: 95%;
     overflow-x: scroll;
     white-space: nowrap;
+    margin: 5px;
 }
 
 .groups > div{

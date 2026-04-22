@@ -87,11 +87,11 @@ INSERT INTO salle VALUES
 	('16BS1', 30, 'Salle de TP');
 
 CREATE TABLE sceance(
-	id_sceance VARCHAR(20) PRIMARY KEY,
 	heure TIME,
 	jour VARCHAR(10),
 	id_groupe VARCHAR(20),
 	id_salle VARCHAR(20),
 	FOREIGN KEY (id_groupe) REFERENCES groupe(id_groupe),
-	FOREIGN KEY (id_salle) REFERENCES salle(id_salle)
+	FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
+	PRIMARY KEY(heure, jour, id_groupe, id_salle)
 );
