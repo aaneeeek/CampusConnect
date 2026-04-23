@@ -9,7 +9,18 @@
         <link href="${pageContext.request.contextPath}/static/css/global.css" rel="stylesheet">
 	</head>
 	<body>
-		<%@ page import="java.util.ArrayList, model.Enseignant, model.Groupe, model.Salle" %>
+		<%@ page import="java.util.ArrayList, model.Enseignant, model.Groupe, model.Salle, model.Seance" %>
+		<script>
+			window.touteSeances = [];
+			<%
+				for (Seance seance : Seance.getListSeance()){
+			%>
+				window.touteSeances.push({salle: "<%= seance.salle %>", jour: "<%= seance.jour %>", heure: "<%= seance.heure %>", groupe: "<%= seance.groupe %>"});
+			<%
+				}
+			%>
+			console.log(window.touteSeances);
+		</script>
 		<script src="${pageContext.request.contextPath}/static/javascript/plannifier.js"></script>
 		<span style="color: darkblue; font-weight:700; font-size:18px; padding: 8px; border-radius: 5px; margin: 4px; background-color:white; box-shadow:0px 0px 20px rgba(2, 2, 47, 0.386);"><a href="${pageContext.request.contextPath}/acceuilAdmin">&larr; Acceuil</a></span>
 		<br><br>
@@ -58,11 +69,11 @@
 				<br>
 				<div style="height:fit-content; display: grid; grid-template-columns: 40px 1fr;">
 					<div style="height: 100%;">
-						<div style="height:48%; position: relative; background-color:aqua;" id="7:30-11:00" onclick="setHeure('7:30-11:00')">
+						<div style="height:48%; position: relative; background-color:aqua;" id="07:30:00" onclick="setHeure('07:30:00')">
 							<span style="position: absolute; top: 3px">7:30</span>
 							<span style="position: absolute; bottom: 3px">11:00</span>
 						</div><br>
-						<div style="height:48%; position: relative; background-color:aqua;" id="12:00-15:00" onclick="setHeure('12:00-15:00')">
+						<div style="height:48%; position: relative; background-color:aqua;" id="12:00:00" onclick="setHeure('12:00:00')">
 							<span style="position: absolute; top: 3px">12:00</span>
 							<span style="position: absolute; bottom: 3px">15:00</span>
 						</div>

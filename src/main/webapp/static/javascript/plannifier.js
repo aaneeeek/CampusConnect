@@ -29,21 +29,32 @@ const reset = ()=>{
 }
 
 const setProgram = ()=>{
-    program.push({salle, jour, heure, groupe});
-    salle = "";
-    jour = "";
-    heure = "";
-    groupe = "";
+    if (program.some(item => item.salle === salle && item.jour === jour && item.heure === heure && item.groupe === groupe) || !salle || !jour || !heure || !groupe){ 
+        alert("Ce créneau est déjà pris");
+    } else {
+        program.push({salle, jour, heure, groupe});
+    }
+    
 }
 
 
-const saveProgram = ()=>{
-    fetch("/PlannifierCours", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(program)
-    });
+const saveProgram = async()=>{
+    console.log(program);
+    if (program.length != 0){
+        let response = await fetch("/PlanifierCours", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(program)
+        });
+        let answer = await response.json();
+        console.log(answer);
+        program.length = 0;
+        window.location.href = window.location.href;
+    }
+    else{
+        alert("Aucun créneau n'a été ajouté au programme");
+    }
 }
 

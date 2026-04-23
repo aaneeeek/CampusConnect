@@ -10,6 +10,7 @@ import model.Seance;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.sql.SQLException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
@@ -40,6 +41,8 @@ public class PlanifierCours extends HttpServlet {
 		BufferedReader reader = request.getReader();
 		StringBuilder sb = new StringBuilder();
 		String line;
+		response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
 		while ((line = reader.readLine()) != null) {
 			sb.append(line);
 		}
@@ -47,8 +50,20 @@ public class PlanifierCours extends HttpServlet {
 		Gson gson = new Gson();
 
 		Type type = new TypeToken<List<Seance>>() {}.getType();
-		List<Seance> users = gson.fromJson(jsonString, type);
-
+		List<Seance> seances = gson.fromJson(jsonString, type);
+		for (Seance seance : seances) {
+			System.out.println(seance.getJour());
+			try {
+				seance.enregistrer();
+			} catch (Exception e) {
+				e.printStackTrace();
+				String json = "{\"message\":\"Error\"}";
+			    response.getWriter().write(json);
+				break;
+			}
+		}
+	    String json = "{\"message\":\"Success\"}";
+	    response.getWriter().write(json);
 	}
 
 }
