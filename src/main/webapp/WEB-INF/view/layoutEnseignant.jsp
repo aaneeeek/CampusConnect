@@ -7,20 +7,19 @@
 <meta charset="UTF-8">
 </head>
 <body>
- <div class="content">
+	  <div class="content">
          <div class="zer">
-            <p>BIENVENUE SUR TON ESPACE ETUDIANT</p>
+            <p>BIENVENU SUR TON ESPACE ENSEIGNANT</p>
         </div>
 
         <div class="mot">
-          <a href="${pageContext.request.contextPath}/acceuilEtudiant?action=sinscrire"><p> S'INSCRIRE</p></a>
-          <a href="..." ><p> VOIR EDT</p></a>
-          <a href="..." ><p> VOIR NOTE</p></a>
+          <a href="${pageContext.request.contextPath}/acceuilEnseignant?action=edt" ><p> VOIR EDT</p></a>
+          <a href="${pageContext.request.contextPath}/acceuilEnseignant?action=remplir" ><p> REMPLIR NOTE</p></a>
         </div>
-        <div class="der">
+       <div class="der">
        <jsp:include page="${contentPage}"></jsp:include>
        </div>
+        
     </div>
-    
 </body>
 </html>

@@ -11,6 +11,7 @@ import utils.ConnectDatabase;
 import utils.UtilityCls;
 
 public class Enseignant extends Personne{
+	Etudiant etudiant = new Etudiant(); 
 	public String statut, departement, idEnseignant;
 	private static Connection connection = ConnectDatabase.getConnection();
 	public Enseignant(String nom, String prenom, Date date_naissance, String mot_de_passe, String statut, String departement, String idPersonne, String idEnseignant) throws SQLException {
@@ -78,14 +79,22 @@ public class Enseignant extends Personne{
 		return UtilityCls.generateId(connection, "enseignant", "id_enseignant");
 	}
 	
-	public void RemplirNote() {
-		
+	public void RemplirNote(String matricule, Float note, String id_groupe ) throws SQLException {
+		String sql = "UPDATE inscrire SET note = ? WHERE matricule = ? AND id_groupe = ? ";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setFloat(1, note);
+		stmt.setString(2, matricule);
+		stmt.setString(3, id_groupe);
+		stmt.executeUpdate();
 	}
-	public void AnimerSeance() {
-		
-	}
-	public void ModifierNote() {
-		
+	
+	public void ModifierNote(String matricule, Float note, String id_groupe) throws SQLException {
+		String sql = "UPDATE inscrire SET note = ? WHERE matricule = ? AND id_groupe = ? ";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setFloat(1, note);
+		stmt.setString(2, matricule);
+		stmt.setString(3, id_groupe);
+		stmt.executeUpdate();
 	}
 
 	@Override
