@@ -15,12 +15,13 @@ public class Seance {
 	public String heure;
 	public String jour;
 	public String groupe;	
-	public String salle;
-	public Seance(String heure, String jour, String groupe, String salle) {
+	public String salle, enseignant;
+	public Seance(String heure, String jour, String groupe, String salle, String enseignant) {
 		this.heure=heure;
 		this.jour=jour;
 		this.groupe=groupe;
 		this.salle=salle;
+		this.enseignant = enseignant;
 	}
 	public String getHeure() {
 		return heure;
@@ -46,11 +47,12 @@ public class Seance {
 	
 	public static ArrayList<Seance> getListSeance() throws SQLException{
 		ArrayList<Seance> listeSeance = new ArrayList();
-		String sql = "SELECT * FROM sceance";
+		String sql = "SELECT heure, jour, sceance.id_groupe, id_salle, groupe.id_enseignant "
+				+ "FROM sceance JOIN groupe ON sceance.id_groupe = groupe.id_groupe";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
-			listeSeance.add(new Seance(rs.getTime("heure").toString(), rs.getString("jour"), rs.getString("id_groupe"), rs.getString("id_salle")));
+			listeSeance.add(new Seance(rs.getTime("heure").toString(), rs.getString("jour"), rs.getString("id_groupe"), rs.getString("id_salle"), rs.getString("id_enseignant")));
 		}
 		return listeSeance;
 	}

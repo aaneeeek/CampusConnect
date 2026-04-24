@@ -15,7 +15,7 @@
 			<%
 				for (Seance seance : Seance.getListSeance()){
 			%>
-				window.touteSeances.push({salle: "<%= seance.salle %>", jour: "<%= seance.jour %>", heure: "<%= seance.heure %>", groupe: "<%= seance.groupe %>"});
+				window.touteSeances.push({salle: "<%= seance.salle %>", jour: "<%= seance.jour %>", heure: "<%= seance.heure %>", groupe: "<%= seance.groupe %>", enseignant: "<%= seance.enseignant %>"});
 			<%
 				}
 			%>
@@ -31,7 +31,7 @@
 				if (listeEnseignant != null){
 					for (Enseignant enseignant : listeEnseignant){
 			%>
-				<div data-name="teacher" id="<%= enseignant.idEnseignant %>" onclick="listGroupes(event)"><%= enseignant.nom %> <%= enseignant.prenom %></div>
+				<div data-name="teacher" id="<%= enseignant.idEnseignant %>" onclick="listGroupes(event); setEnseignant('<%= enseignant.idEnseignant %>')"><%= enseignant.nom %> <%= enseignant.prenom %></div>
 			<%
 					}
 				}
