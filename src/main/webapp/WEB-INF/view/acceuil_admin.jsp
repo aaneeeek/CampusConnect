@@ -37,7 +37,7 @@
                     <li>Liste Cours</li>
                     <li><a href="<%=response.encodeURL(request.getContextPath() +"/ajouterCours") %>">Création de Cours</a></li>
                     <li>Création de Groupe de Cours</li>
-                    <li>Plannifier les sceances de cours</li>
+                    <li><a href="<%=response.encodeURL(request.getContextPath() +"/PlanifierCours") %>">Plannifier les sceances de cours</a></li>
                 </ul>
             </div>
 
