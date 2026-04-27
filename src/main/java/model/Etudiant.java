@@ -92,12 +92,12 @@ public class Etudiant extends Personne{
 	public Map VoirNote() throws SQLException {
 		
 		Map<String, Float> Liste_note = new HashMap<>();
-		String sql = "SELECT note, intituler FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?";
+		String sql = "SELECT note, intituler, nom_groupe FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, this.matricule);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-			Liste_note.put(rs.getString("intituler"), rs.getFloat("note"));
+			Liste_note.put(rs.getString("intituler") + "("+ rs.getString("nom_groupe") + ")", rs.getFloat("note"));
 		}
 		return Liste_note;
 	}
@@ -115,7 +115,7 @@ public class Etudiant extends Personne{
 		}
 		return EDT;
 	}
-	
+
 	public String getMatricule () {
 		return this.matricule;
 	}

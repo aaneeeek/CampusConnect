@@ -10,6 +10,8 @@ import utils.UtilityCls;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Servlet implementation class acceuilEtudiant
@@ -35,16 +37,26 @@ public class acceuilEtudiant extends HttpServlet {
 //		request.getRequestDispatcher("/WEB-INf/view/etudiant.jsp").forward(request, response);
 		String action = request.getParameter("action");
 		String contentPage = null;
+		Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne");
+		Map<String, Float>ListeNote = new HashMap<>();
+		
 		try {
 			boolean isLoggedIn = UtilityCls.permission("etudiant", "", request.getSession(false));
 			if (isLoggedIn){
 				if("sinscrire".equals(action)) {
 					contentPage= "/WEB-INF/view/etudiant.jsp";
 				}
+				else if("note".equals(action)){
+					ListeNote = etudiant.VoirNote();
+					request.setAttribute("ListeNote", ListeNote);
+					contentPage = "/WEB-INF/view/ListeNote.jsp";
+				}
 				request.setAttribute("contentPage", contentPage);
 				
 				request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);
 				System.out.println("################################" + request.getSession(false).getAttribute("type_compte"));
+				
+				
 			}else {
 				response.getWriter().println("<h1>Access Revoked</h1>");
 			}

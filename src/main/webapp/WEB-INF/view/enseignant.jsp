@@ -51,7 +51,7 @@
 	</div>
 	
 	<div>
-		<input id="note" type="text" required> <button onclick="save()" class="form-button">SAVE</button>
+		<input id="note" type="text" required> <button type = "button" onclick="save()" class="form-button">SAVE</button>
 	</div>
 </div>
 <script type="text/javascript">
@@ -78,6 +78,10 @@
 		if (response.ok){
 			const json = await response.json();
 			console.log(json);
+			setTimeout(() => {
+				alert("note enrehistree avec succes");
+			}, 100);
+		
 		}else{
 			console.log("no");
 		}
