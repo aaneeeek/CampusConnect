@@ -60,15 +60,17 @@ public class acceuilEtudiant extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Etudiant etudiant = (Etudiant) request.getSession().getAttribute("etudiant");
+		System.out.println(etudiant.idPersonne);
 		String action = request.getParameter("action");
 		String id_groupe = request.getParameter("id_groupe");
+	
 		if("sinscrire".equals(action)){
 		try {
 			etudiant.Sinscrire(id_groupe);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("acceuilEtudiant?action = sinscrire");
+		response.sendRedirect("acceuilEtudiant?action=sinscrire");
 	}
 	}
 	}

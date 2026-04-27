@@ -29,7 +29,7 @@
     		<td><%= rs.getString("id_groupe") %></td>
     		<td><%= rs.getString("nom_groupe") %></td>
     		<td>
-    		<form method= "post" action = "${pageContext.request.contextPath}/acceuilEtudiant">
+    		<form method= "post" action = "${pageContext.request.contextPath}/acceuilEtudiant?action=sinscrire">
     		<input type="hidden" name = "id_groupe" value = "<%= rs.getString("id_groupe") %>">
     		<a href ="${pagCcontext.request.contextPath }/acceuilEtudiant?action=sinscrire"><button type="submit"> S'inscrire </button></a>
     		</form>
