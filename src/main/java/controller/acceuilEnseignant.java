@@ -1,8 +1,9 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
-
+import com.google.gson.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -48,21 +49,20 @@ public class acceuilEnseignant extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-		String matricule=request.getParameter("matricule");
-		String note = request.getParameter("note");
-		Float note2 = Float.parseFloat(note);
-		String id_groupe = request.getParameter("id_groupe");
+		BufferedReader reader = request.getReader();
+		JsonElement jsonElement = JsonParser.parseReader(reader);
+		JsonObject jsonObject = jsonElement.getAsJsonObject();
+		String matricule = jsonObject.get("matricule").getAsString();
+		Float note = Float.parseFloat(jsonObject.get("note").getAsString());
+		String id_groupe = jsonObject.get("id_groupe").getAsString();
 		Enseignant enseignant= (Enseignant) request.getSession().getAttribute("personne");
-		
-		if("save".equals("action")) {
-			try {
-				enseignant.RemplirNote(matricule, note2, id_groupe);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		try {
+			enseignant.RemplirNote(matricule, note, id_groupe);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("/WEB-INf/view/layoutEnseignant.jsp").forward(request, response);
-	}
+	
 	}
 
 }
