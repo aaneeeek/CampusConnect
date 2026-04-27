@@ -53,7 +53,7 @@ public class acceuilEnseignant extends HttpServlet {
 		String note = request.getParameter("note");
 		Float note2 = Float.parseFloat(note);
 		String id_groupe = request.getParameter("id_groupe");
-		Enseignant enseignant= (Enseignant) request.getSession().getAttribute("enseignant");
+		Enseignant enseignant= (Enseignant) request.getSession().getAttribute("personne");
 		
 		if("save".equals("action")) {
 			try {
@@ -61,7 +61,7 @@ public class acceuilEnseignant extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
+		request.getRequestDispatcher("/WEB-INf/view/layoutEnseignant.jsp").forward(request, response);
 	}
 	}
 

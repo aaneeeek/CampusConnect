@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ page import="java.sql.*" %>
+    <%@ page import="java.sql.*, model.Etudiant" %>
     <%@ page import="utils.ConnectDatabase" %>
 <!DOCTYPE html>
 <html>
@@ -20,8 +20,11 @@
     	</tr>
     	
     	<%
+    	Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne");
     	Connection connection = ConnectDatabase.getConnection();
-    	PreparedStatement stmt = connection.prepareStatement("SELECT * FROM groupe");
+    	PreparedStatement stmt = connection.prepareStatement("SELECT groupe.id_groupe, nom_groupe, id_enseignant FROM groupe JOIN inscrire ON matricule <> ?");
+    	try{
+    	stmt.setString(1, etudiant.getMatricule());
     	ResultSet rs = stmt.executeQuery();
     	while(rs.next()){
     	%>
@@ -35,7 +38,11 @@
     		</form>
     		</td>
     		</tr>
-    	<% } 
+    	<% } }catch(Exception e){
+    		%>
+    		<h2>error</h2>
+    		<%
+    	}
     	%>
     		
     	

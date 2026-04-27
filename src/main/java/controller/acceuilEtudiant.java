@@ -59,7 +59,7 @@ public class acceuilEtudiant extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Etudiant etudiant = (Etudiant) request.getSession().getAttribute("etudiant");
+		Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne");
 		System.out.println(etudiant.idPersonne);
 		String action = request.getParameter("action");
 		String id_groupe = request.getParameter("id_groupe");
@@ -70,7 +70,7 @@ public class acceuilEtudiant extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("acceuilEtudiant?action=sinscrire");
+		request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);
 	}
 	}
 	}

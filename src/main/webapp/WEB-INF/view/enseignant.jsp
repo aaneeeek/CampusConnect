@@ -227,7 +227,7 @@
   </header>
 
   <!-- action = URL de votre servlet | method = post -->
-  <form id="noteForm" action="${pageContext.request.contextPath}/acceuilEnseignant" method="post">
+  <form id="noteForm" action="${pageContext.request.contextPath}/acceuilEnseignant?action=save" method="post">
 
     <div class="card">
       <div class="table-header">
@@ -253,7 +253,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:14px">
           <span class="count-badge" id="count-badge">1 élève</span>
-         <a href="${pageContext.request.contextPath}/acceuilEtudiant?action=save"> <button type="button" class="btn btn-submit" onclick="submitForm()">
+         <a href="${pageContext.request.contextPath}/acceuilEnseignant?action=save"> <button type="button" class="btn btn-submit" onclick="submitForm()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
