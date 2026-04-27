@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Connexion</title>
+        <title>Remplir Notes</title>
         <link href="${pageContext.request.contextPath}/static/css/connexion_user.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/static/css/global.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/static/css/create_user.css" rel="stylesheet">
@@ -61,16 +61,27 @@
 		document.querySelector('[data-id="' + id +'"]').style.display = "block"
 	}
 
-	function save(note){
+	async function save(){
 		const note = document.getElementById("note").value;
 		const id_groupe = document.getElementById("group-select").value;
-		const matricule = document.querySelector('[data-id="' + id +'"]').value;
-		fetch("/acceuilEnseignant",{
+		const matricule = document.querySelector('[data-id="' + id_groupe +'"]').value;
+		const response = await fetch("/acceuilEnseignant",{
 			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify({
 				note, matricule, id_groupe
 			})
 		});
+		console.log("happy");
+		if (response.ok){
+			const json = await response.json();
+			console.log(json);
+		}else{
+			console.log("no");
+		}
+		
 	}
 
 

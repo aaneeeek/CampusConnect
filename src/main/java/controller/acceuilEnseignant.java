@@ -49,6 +49,7 @@ public class acceuilEnseignant extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
 		BufferedReader reader = request.getReader();
 		JsonElement jsonElement = JsonParser.parseReader(reader);
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -58,10 +59,13 @@ public class acceuilEnseignant extends HttpServlet {
 		Enseignant enseignant= (Enseignant) request.getSession().getAttribute("personne");
 		try {
 			enseignant.RemplirNote(matricule, note, id_groupe);
-		} catch (SQLException e) {
+			String json = "{\"message\":\"Success\"}";
+		    response.getWriter().write(json);
+		} catch (Exception e) {
 			e.printStackTrace();
+			String json = "{\"message\":\"Error\"}";
+		    response.getWriter().write(json);
 		}
-		request.getRequestDispatcher("/WEB-INf/view/layoutEnseignant.jsp").forward(request, response);
 	
 	}
 
