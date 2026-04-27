@@ -7,12 +7,16 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
+
 import utils.ConnectDatabase;
+import utils.CourseConflictException;
 
 public class Etudiant extends Personne{
 	private String matricule;
@@ -29,10 +33,6 @@ public class Etudiant extends Personne{
 		this.filiere = filiere;
 		if (idPersonne.contentEquals("")) {this.idPersonne = generateIdPersonne();}
 	    else {this.idPersonne = idPersonne;}
-	}
-	
-	public Etudiant() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static ArrayList<Etudiant> getListeEtudiant() throws SQLException {
@@ -81,16 +81,21 @@ public class Etudiant extends Personne{
 		return etudiant;
 	}
 	
-	public void Sinscrire(String id_groupe) throws SQLException {
+	public void Sinscrire(String id_groupe) throws SQLException, CourseConflictException {
+		if(Seance.isConflitSeance(getProgramme(), Groupe.getSeance(id_groupe))) {
+			System.out.println("FAILED#####################################");
+			throw new CourseConflictException("Conflict in time table");
+		}else {
+			String sql = "INSERT INTO inscrire (matricule, id_groupe) VALUES ( ?, ?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, matricule);
+			stmt.setString(2, id_groupe);
+			stmt.executeUpdate();
+			System.out.println("SUCCESS#####################################");
+		}
 		
-		String sql = "INSERT INTO inscrire (matricule, id_groupe) VALUES ( ?, ?)";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, matricule);
-		stmt.setString(2, id_groupe);
-		stmt.executeUpdate();
 	}
 	public Map VoirNote() throws SQLException {
-		
 		Map<String, Float> Liste_note = new HashMap<>();
 		String sql = "SELECT note, intituler, nom_groupe FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -129,19 +134,25 @@ public class Etudiant extends Personne{
 	public void setMatricule (String matricule) {
 		this.matricule=matricule;
 	}
-	public void setNiveau () {
-		this.niveau=niveau;
-	}
-	public void setFiliere () {
-		this.filiere=filiere;
-	}
-
+	
 	@Override
 	public void VoirEdt() throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public ArrayList<Seance> getProgramme() throws SQLException{
+		ArrayList<Seance> listeSeance = new ArrayList();
+		String sql = "SELECT heure, jour, id_salle, id_enseignant, inscrire.id_groupe FROM sceance JOIN inscrire ON sceance.id_groupe = inscrire.id_groupe JOIN groupe ON groupe.id_groupe = inscrire.id_groupe WHERE inscrire.matricule = ? ";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, matricule);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			listeSeance.add(new Seance(rs.getTime("heure").toString(), rs.getString("jour"), rs.getString("id_groupe"), rs.getString("id_salle"), rs.getString("id_enseignant")));
+		}
+		return listeSeance;
+	}
+	
 	
 
 }

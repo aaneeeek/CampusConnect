@@ -53,7 +53,15 @@ function setJour (journee){
     hideOccupiedSlots();
 }
 const reset = ()=>{
-
+    if (salle) document.querySelector(`[id="${salle}"][data-name="salle"]`).style.backgroundColor = "bisque";
+    if (groupe) document.querySelector(`[data-name="groups"][id="`+ groupe + `"]`).style.backgroundColor = "rgb(130, 213, 130)";
+    if (heure) document.getElementById(heure).style.backgroundColor = "aqua";
+    if (jour) document.getElementById(jour).style.backgroundColor = "rgb(98, 136, 198)";
+    salle = "";
+    jour = "";
+    heure = "";
+    groupe = "";
+    enseignant = "";
 }
 
 
@@ -76,6 +84,8 @@ const setProgram = ()=>{
         alert("Ce créneau existe déjà");
     }else {
         program.push({salle, jour, heure, groupe, enseignant});
+        reset();
+        alert("Programme ajouté avec succès");
     }
     
 }
