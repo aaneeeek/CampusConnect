@@ -22,7 +22,7 @@
     	<%
     	Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne");
     	Connection connection = ConnectDatabase.getConnection();
-    	PreparedStatement stmt = connection.prepareStatement("SELECT groupe.id_groupe, nom_groupe, id_enseignant FROM groupe JOIN inscrire ON matricule <> ?");
+    	PreparedStatement stmt = connection.prepareStatement("SELECT groupe.id_groupe, nom_groupe, id_enseignant FROM groupe JOIN inscrire ON matricule <> ? AND groupe.id_groupe= inscrire.id_groupe");
     	try{
     	stmt.setString(1, etudiant.getMatricule());
     	ResultSet rs = stmt.executeQuery();

@@ -1,9 +1,18 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import utils.ConnectDatabase;
+
 public class Groupe {
 	public String nom_groupe, code_cours, idGroupe, idEnseignant;
 	private int volume_horaire;
 	private int capacite;
+	private static Connection connection = ConnectDatabase.getConnection();
 	
 	
 	public Groupe(String nom_groupe, int volume_horaire, int capacite, String idGroupe, String idEnseignant, String code_cours) {
@@ -46,6 +55,18 @@ public class Groupe {
 	}
 	public String setidEnseignat() {
 		return this.idEnseignant;
+	}
+	
+	public ArrayList<String> getEtudiant() throws SQLException{
+		ArrayList<String> listeEtudiant = new ArrayList();
+		String sql = "SELECT etudiant.matricule FROM etudiant JOIN inscrire ON inscrire.matricule = etudiant.matricule AND inscrire.id_groupe = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, idGroupe);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			listeEtudiant.add(rs.getString("matricule"));
+		}
+		return listeEtudiant;
 	}
 	
 	
