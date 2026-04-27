@@ -95,3 +95,57 @@ CREATE TABLE sceance(
 	FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
 	PRIMARY KEY(heure, jour, id_groupe, id_salle)
 );
+
+
+
+-- =========================
+-- PERSONNES (for students & teachers)
+-- =========================
+INSERT INTO personne VALUES 
+('2', 'Doe', 'John', '2002-03-12', 'pass123'),
+('3', 'Smith', 'Alice', '2001-07-25', 'pass123'),
+('4', 'Nguyen', 'David', '1990-11-05', 'pass123'),
+('5', 'Kouam', 'Brice', '1985-09-17', 'pass123');
+
+-- =========================
+-- ENSEIGNANTS
+-- =========================
+INSERT INTO enseignant VALUES
+('ENS1', 'Permanent', 'INFO', '4'),
+('ENS2', 'Vacataire', 'GENIE', '5');
+
+-- =========================
+-- ETUDIANTS
+-- =========================
+INSERT INTO etudiant VALUES
+('ETU00001', 2, 'INFO', '2'),
+('ETU00002', 3, 'INFO', '3');
+
+-- =========================
+-- COURS
+-- =========================
+INSERT INTO cours VALUES
+('C001', 'Programmation Java', 'Cours de base en Java', 60, 40, 'ENS1'),
+('C002', 'Base de Donnees', 'Introduction aux bases de donnees', 45, 35, 'ENS2');
+
+-- =========================
+-- GROUPES
+-- =========================
+INSERT INTO groupe VALUES
+('G1', 'Groupe A', 30, 25, 'ENS1', 'C001'),
+('G2', 'Groupe B', 25, 20, 'ENS2', 'C002');
+
+-- =========================
+-- INSCRIPTIONS
+-- =========================
+INSERT INTO inscrire VALUES
+(15.5, 'ETU00001', 'G1'),
+(13.0, 'ETU00002', 'G2');
+
+-- =========================
+-- SEANCES
+-- =========================
+INSERT INTO sceance VALUES
+('07:30:00', 'Lundi', 'G1', '25BP1'),
+('12:00:00', 'Mardi', 'G2', '12BP1');
+

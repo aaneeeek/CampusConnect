@@ -31,6 +31,18 @@ public class Groupe {
 		
 	}
 	
+	public static ArrayList<Seance> getSeance(String id_groupe) throws SQLException {
+		ArrayList<Seance> listeSeance = new ArrayList();
+		String sql = "SELECT heure, jour, groupe.id_groupe, id_salle, id_enseignant FROM sceance JOIN groupe ON groupe.id_groupe = sceance.id_groupe WHERE groupe.id_groupe = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, id_groupe);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			listeSeance.add(new Seance(rs.getTime("heure").toString(), rs.getString("jour"), rs.getString("id_groupe"), rs.getString("id_salle"), rs.getString("id_enseignant")));
+		}
+		return listeSeance;
+	}
+	
 	public String getNom_groupe() {
 		return this.nom_groupe;
 	}

@@ -22,7 +22,15 @@
     	<%
     	Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne");
     	Connection connection = ConnectDatabase.getConnection();
-    	PreparedStatement stmt = connection.prepareStatement("SELECT groupe.id_groupe, nom_groupe, id_enseignant FROM groupe JOIN inscrire ON matricule <> ? AND groupe.id_groupe= inscrire.id_groupe");
+    	PreparedStatement stmt = connection.prepareStatement(
+    			"SELECT g.id_groupe, g.nom_groupe, g.id_enseignant " +
+    				    "FROM groupe g " +
+    				    "WHERE NOT EXISTS (" +
+    				    "    SELECT 1 FROM inscrire i " +
+    				    "    WHERE i.id_groupe = g.id_groupe " +
+    				    "    AND i.matricule = ?" +
+    				    ")"
+    			);
     	try{
     	stmt.setString(1, etudiant.getMatricule());
     	ResultSet rs = stmt.executeQuery();

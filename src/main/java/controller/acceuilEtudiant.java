@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Etudiant;
+import utils.CourseConflictException;
 import utils.UtilityCls;
 
 import java.io.IOException;
@@ -30,9 +31,6 @@ public class acceuilEtudiant extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().println("<h1>Acceuil Etudiant</h1>");
-//		request.getRequestDispatcher("/WEB-INf/view/etudiant.jsp").forward(request, response);
 		String action = request.getParameter("action");
 		String contentPage = null;
 		try {
@@ -67,7 +65,10 @@ public class acceuilEtudiant extends HttpServlet {
 		if("sinscrire".equals(action)){
 		try {
 			etudiant.Sinscrire(id_groupe);
-		} catch (Exception e) {
+		} catch (CourseConflictException e) {
+			response.getWriter().println("<h1>You can't add register into this group. (Timetable Conflict) </h1>");
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);

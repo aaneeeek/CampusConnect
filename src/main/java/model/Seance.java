@@ -57,4 +57,20 @@ public class Seance {
 		return listeSeance;
 	}
 	
+	public static boolean isConflitSeance(ArrayList<Seance> seance1, ArrayList<Seance> seance2) {
+		for (Seance s1: seance1 ) {
+			for (Seance s2 : seance2) {
+				if (s1.heure.equals(s2.heure) && s1.jour.equals(s2.jour)) {
+					System.out.println(s1.heure);
+					System.out.println(s2.heure);
+					System.out.println(s1.jour);
+					System.out.println(s2.jour);
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 }

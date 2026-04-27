@@ -10,7 +10,6 @@ import utils.ConnectDatabase;
 import utils.UtilityCls;
 
 public class Enseignant extends Personne{
-	Etudiant etudiant = new Etudiant(); 
 	public String statut, departement, idEnseignant;
 	private static Connection connection = ConnectDatabase.getConnection();
 	public Enseignant(String nom, String prenom, Date date_naissance, String mot_de_passe, String statut, String departement, String idPersonne, String idEnseignant) throws SQLException {
