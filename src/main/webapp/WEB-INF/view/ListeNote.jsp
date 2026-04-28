@@ -6,6 +6,10 @@
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/static/css/note.css" rel="stylesheet">
+
+<!-- 🔥 AJOUT GRAPHE -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <meta charset="UTF-8">
 <title>Bulletin de Notes</title>
 </head>
@@ -46,7 +50,7 @@
 
         <% if(notesParMatiere != null && !notesParMatiere.isEmpty()){ %>
 
-        <!-- TABLE PAR MATIERE -->
+        <!-- TABLE -->
         <table class="notes-table">
             <thead>
                 <tr>
@@ -68,7 +72,7 @@
                 float td = notes.getOrDefault("TD", 0f);
                 float tp = notes.getOrDefault("TP", 0f);
 
-                float moyenne = moyennes.get(matiere);
+                float moyenne = moyennes.getOrDefault(matiere, 0f);
 
                 String classe = moyenne >= 16 ? "note-good"
                                : (moyenne >= 10 ? "note-medium" : "note-bad");
@@ -89,7 +93,50 @@
             </tbody>
         </table>
 
-        <!-- BOUTON PDF -->
+        <!-- 📊 GRAPHE -->
+        <canvas id="chart" style="margin-top:30px;"></canvas>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function(){
+
+            const labels = [
+                <% for(String matiere : moyennes.keySet()){ %>
+                    "<%= matiere %>",
+                <% } %>
+            ];
+
+            const data = [
+                <% for(Float m : moyennes.values()){ %>
+                    <%= m %>,
+                <% } %>
+            ];
+
+            if(labels.length === 0) return;
+
+            new Chart(document.getElementById("chart"), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Moyenne par matière',
+                        data: data
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 20
+                        }
+                    }
+                }
+            });
+
+        });
+        </script>
+
+        <!-- PDF -->
         <div style="text-align:center; margin-top:20px;">
             <a href="exportPDF">
                 <button class="form-button">Télécharger le bulletin PDF</button>
