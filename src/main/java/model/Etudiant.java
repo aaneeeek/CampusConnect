@@ -143,7 +143,7 @@ public class Etudiant extends Personne{
 	
 	public ArrayList<Seance> getProgramme() throws SQLException{
 		ArrayList<Seance> listeSeance = new ArrayList();
-		String sql = "SELECT heure, jour, id_salle, id_enseignant, inscrire.id_groupe FROM sceance JOIN inscrire ON sceance.id_groupe = inscrire.id_groupe JOIN groupe ON groupe.id_groupe = inscrire.id_groupe WHERE inscrire.matricule = ? ";
+		String sql = "SELECT heure, jour, id_salle, id_enseignant, inscrire.id_groupe FROM sceance JOIN inscrire ON sceance.id_groupe = inscrire.id_groupe AND inscrire.matricule = ?  JOIN groupe ON groupe.id_groupe = inscrire.id_groupe";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, matricule);
 		ResultSet rs = stmt.executeQuery();

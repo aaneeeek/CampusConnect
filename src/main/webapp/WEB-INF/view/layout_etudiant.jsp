@@ -14,7 +14,7 @@
 
         <div class="mot">
           <a href="${pageContext.request.contextPath}/acceuilEtudiant?action=sinscrire"><p> S'INSCRIRE</p></a>
-          <a href="..." ><p> VOIR EDT</p></a>
+          <a href="/EDTEtudiant" ><p> VOIR EDT</p></a>
           <a href="${pageContext.request.contextPath}/acceuilEtudiant?action=note"><p> VOIR NOTE</p></a>
         </div>
         <div class="der">

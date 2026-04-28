@@ -77,13 +77,14 @@ public class acceuilEtudiant extends HttpServlet {
 		if("sinscrire".equals(action)){
 		try {
 			etudiant.Sinscrire(id_groupe);
+			request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);
 		} catch (CourseConflictException e) {
 			response.getWriter().println("<h1>You can't add register into this group. (Timetable Conflict) </h1>");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INf/view/layout_etudiant.jsp").forward(request, response);
+		
 	}
 	}
 	}

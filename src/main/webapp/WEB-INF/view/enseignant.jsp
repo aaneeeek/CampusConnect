@@ -78,9 +78,9 @@
 		if (response.ok){
 			const json = await response.json();
 			console.log(json);
-			setTimeout(() => {
+			
 				alert("note enrehistree avec succes");
-			}, 100);
+			
 		
 		}else{
 			console.log("no");
