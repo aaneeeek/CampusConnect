@@ -1,62 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-
-.form-button{
-    padding: 7px;
-    border-radius: 5px;
-    color: white;
-    background-color: darkblue;
-    border: none;
-    margin-top: 15px;
-}
-.form-button:hover{
-    padding: 10px;
-    border: double 2px darkblue;
-}
-
-a{
-    text-decoration: none;
-}
-
-label{
-    color: darkblue;
-    font-weight: 800;
-    padding: 3px;
-    font-size: 17px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+:root {
+  --navy:       #0d1f4f;
+  --navy-mid:   #1a3370;
+  --navy-light: #2d50a0;
+  --gold:       #c9a84c;
+  --gold-light: #e8c97a;
+  --cream:      #f7f5f0;
+  --white:      #ffffff;
+  --muted:      #8a93b0;
+  --border:     rgba(13, 31, 79, 0.15);
+  --shadow-sm:  0 2px 12px rgba(13, 31, 79, 0.10);
+  --shadow-md:  0 8px 32px rgba(13, 31, 79, 0.18);
+  --shadow-lg:  0 20px 60px rgba(13, 31, 79, 0.22);
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], select{
-    border-radius: 8px;
-    padding: 5px;
-    border:2px solid darkblue;
-    outline: none;
-    appearance: none;
-    width: 100%;
-    max-width: 230px;
-    height: 15px;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (width<=725px) {
-    label{
-        font-size: 14px;
-        
-    }
-}
-input[type="radio"]{
-    width: 15px;
-    color: darkblue;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-textarea{
-    border-radius: 10px;
-    padding: 6px;
-    height: 150px;
-    width: 90%;
-   
-    border:2px solid darkblue;
-    margin: auto;
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--cream);
+  color: var(--navy);
+  min-height: 100vh;
+  line-height: 1.6;
+  background-image:
+    radial-gradient(ellipse at 80% 0%, rgba(201,168,76,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(13,31,79,0.06) 0%, transparent 50%);
 }
 
-select{
-    min-height: 25px;
+/* ── Typography ─────────────────────────────────────── */
+.paragraph {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--navy-light);
+  transition: color var(--transition);
+}
+a:hover { color: var(--gold); }
+
+/* ── Form Elements ──────────────────────────────────── */
+label {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  color: var(--navy);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  outline: none;
+  appearance: none;
+  width: 100%;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(45, 80, 160, 0.12);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select {
+  max-width: 240px;
+  height: 38px;
+}
+
+select {
+  min-height: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230d1f4f' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+textarea {
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  height: 130px;
+  width: 90%;
+  display: block;
+  margin: 8px auto;
+  resize: vertical;
+  max-width: none;
+}
+textarea:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(45, 80, 160, 0.12);
+}
+
+input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--navy);
+  cursor: pointer;
+}
+
+/* ── Buttons ────────────────────────────────────────── */
+.form-button {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.form-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(201,168,76,0.18) 100%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.form-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.form-button:hover::after { opacity: 1; }
+.form-button:active { transform: translateY(0); }
+
+/* ── Back Link ──────────────────────────────────────── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--navy);
+  background: var(--white);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  margin: 12px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.back-link:hover {
+  color: var(--navy);
+  box-shadow: var(--shadow-md);
+  transform: translateX(-2px);
+}
+
+/* ── Page Fade-in ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeUp 0.5s ease both;
 }

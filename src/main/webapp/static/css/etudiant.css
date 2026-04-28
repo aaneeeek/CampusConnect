@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/* CONTENEUR GLOBAL */
+.content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+    padding:20px;
+}
+
+/* HEADER BLEU */
+.zer{
+    width:100%;
+    max-width:900px;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color:white;
+    text-align:center;
+    padding:20px;
+    border-radius:12px;
+    font-size:22px;
+    font-weight:bold;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* MENU (S'inscrire, EDT, Note) */
+.mot{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.mot a{
+    background:white;
+    padding:10px 20px;
+    border-radius:8px;
+    font-weight:600;
+    color:#1e3a8a;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.mot a:hover{
+    background:#2563eb;
+    color:white;
+    transform:translateY(-2px);
+}
+
+/* CONTENU (table ou inscription) */
+.der{
+    width:100%;
+    max-width:900px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1e3a8a;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f1f5f9;
+}
+
+tr:hover{
+    background:#dbeafe;
+}
+
+/* BOUTON S'INSCRIRE */
+button{
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+    .zer{
+        font-size:18px;
+        padding:15px;
+    }
+
+    .mot{
+        flex-direction:column;
+        align-items:center;
+    }
+}

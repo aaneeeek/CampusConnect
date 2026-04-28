@@ -1,0 +1,93 @@
+.notes-container{
+    display:flex;
+    justify-content:center;
+    padding:30px;
+}
+
+.notes-card{
+    width:100%;
+    max-width:800px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+
+.notes-title{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    gap:15px;
+}
+
+.stat-box{
+    flex:1;
+    background:#f1f5f9;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.stat-box h3{
+    margin-top:5px;
+}
+
+.stat-box.success{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.stat-box.danger{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* TABLE */
+.notes-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+.notes-table th{
+    background:#1e3a8a;
+    color:white;
+    padding:10px;
+}
+
+.notes-table td{
+    padding:10px;
+    text-align:center;
+}
+
+.notes-table tr:nth-child(even){
+    background:#f1f5f9;
+}
+
+.notes-table tr:hover{
+    background:#dbeafe;
+}
+
+/* NOTES COLORS */
+.note-good{ color:#16a34a; font-weight:bold; }
+.note-medium{ color:#f59e0b; font-weight:bold; }
+.note-bad{ color:#dc2626; font-weight:bold; }
+
+/* GRAPH */
+canvas{
+    margin-top:25px;
+}
+
+/* EMPTY */
+.no-data{
+    text-align:center;
+    padding:20px;
+    color:gray;
+}

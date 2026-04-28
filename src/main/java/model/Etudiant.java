@@ -95,16 +95,37 @@ public class Etudiant extends Personne{
 		}
 		
 	}
-	public Map VoirNote() throws SQLException {
-		Map<String, Float> Liste_note = new HashMap<>();
-		String sql = "SELECT inscrire.note, cours.code_cours, groupe.nom_groupe FROM inscrire JOIN groupe ON groupe.id_groupe = inscrire.id_groupe JOIN cours ON groupe.code_cours = cours.code_cours WHERE inscrire.matricule = ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, this.matricule);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			Liste_note.put(rs.getString("code_cours") + "("+ rs.getString("nom_groupe") + ")", rs.getFloat("note"));
-		}
-		return Liste_note;
+	public Map<String, Map<String, Float>> voirNotesParMatiere() throws SQLException {
+
+	    Map<String, Map<String, Float>> notesParMatiere = new HashMap<>();
+
+	    String sql = "SELECT inscrire.note, cours.code_cours, groupe.nom_groupe " +
+	                 "FROM inscrire " +
+	                 "JOIN groupe ON groupe.id_groupe = inscrire.id_groupe " +
+	                 "JOIN cours ON groupe.code_cours = cours.code_cours " +
+	                 "WHERE inscrire.matricule = ?";
+
+	    PreparedStatement stmt = connection.prepareStatement(sql);
+	    stmt.setString(1, this.matricule);
+
+	    ResultSet rs = stmt.executeQuery();
+
+	    while (rs.next()) {
+
+	        String matiere = rs.getString("code_cours");   // ex: JAVA
+	        String type = rs.getString("nom_groupe").toUpperCase(); // CM, TD, TP
+	        float note = rs.getFloat("note");
+
+	        // Si la matière n'existe pas encore → on la crée
+	        if (!notesParMatiere.containsKey(matiere)) {
+	            notesParMatiere.put(matiere, new HashMap<>());
+	        }
+
+	        // Ajouter la note dans la matière correspondante
+	        notesParMatiere.get(matiere).put(type, note);
+	    }
+
+	    return notesParMatiere;
 	}
 
 

@@ -48,25 +48,65 @@ public class acceuilEnseignant extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
-		BufferedReader reader = request.getReader();
-		JsonElement jsonElement = JsonParser.parseReader(reader);
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		String matricule = jsonObject.get("matricule").getAsString();
-		Float note = Float.parseFloat(jsonObject.get("note").getAsString());
-		String id_groupe = jsonObject.get("id_groupe").getAsString();
-		Enseignant enseignant= (Enseignant) request.getSession().getAttribute("personne");
-		try {
-			enseignant.RemplirNote(matricule, note, id_groupe);
-			String json = "{\"message\":\"Success\"}";
-		    response.getWriter().write(json);
-		} catch (Exception e) {
-			e.printStackTrace();
-			String json = "{\"message\":\"Error\"}";
-		    response.getWriter().write(json);
-		}
-	
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+		response.setContentType("text/plain");
 
-}
+	    try {
+	        System.out.println("===== DOPOST APPELÉ =====");
+
+	        String noteStr = request.getParameter("note");
+	        String matricule = request.getParameter("matricule");
+	        String id_groupe = request.getParameter("id_groupe");
+
+	        System.out.println("NOTE = [" + noteStr + "]");
+	        System.out.println("MAT = [" + matricule + "]");
+	        System.out.println("GROUPE = [" + id_groupe + "]");
+
+	        // 🔴 Vérification paramètres
+	        if(noteStr == null || noteStr.isEmpty() ||
+	           matricule == null || matricule.isEmpty() ||
+	           id_groupe == null || id_groupe.isEmpty()){
+
+	            response.setStatus(400);
+	            response.getWriter().write("Paramètres manquants ou invalides");
+	            return;
+	        }
+
+	        float note;
+	        try {
+	            note = Float.parseFloat(noteStr);
+	        } catch (NumberFormatException e) {
+	            response.setStatus(400);
+	            response.getWriter().write("Format de note invalide");
+	            return;
+	        }
+
+	        // 🔴 Vérification session
+	        Enseignant enseignant = (Enseignant) request.getSession().getAttribute("personne");
+
+	        if(enseignant == null){
+	            response.setStatus(401);
+	            response.getWriter().write("Session expirée ou enseignant non connecté");
+	            return;
+	        }
+
+	        // 🔥 Appel métier
+	        enseignant.RemplirNote(matricule.trim(), note, id_groupe.trim());
+
+	        response.setStatus(200);
+	        response.getWriter().write("Note enregistrée avec succès");
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace(); // 🔴 très important pour debug
+
+	        response.setStatus(500);
+
+	        // 🔥 RENVOIE L’ERREUR RÉELLE (clé du debug)
+	        response.getWriter().write("Erreur serveur : " + e.getMessage());
+	    }
+
+	    }
+	}
+	

@@ -1,37 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import ="java.util.Map" %>
+<%@ page import="java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${pageContext.request.contextPath}/static/css/note.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bulletin de Notes</title>
 </head>
+
 <body>
-<%
-Map<String, Float> liste= (Map<String, Float>) request.getAttribute("ListeNote");
-%>
-<table>
-<tr>
-<th>Matiere</th>
-<th>Note</th>
-</tr>
-<%
-if(liste != null){
-	for(Map.Entry<String, Float> entry: liste.entrySet()){
-%>
-<tr>
-<td><%= entry.getKey() %></td>
-<td><%= entry.getValue() %></td>
-</tr>
-<%
-	}
-}else{
-%>
-<p>Aucune note</p>
-<%
-}
-%>
-</table>
+
+<div class="notes-container">
+    <div class="notes-card">
+
+        <h2 class="notes-title">Bulletin de Notes</h2>
+
+        <%
+        Map<String, Map<String, Float>> notesParMatiere =
+            (Map<String, Map<String, Float>>) request.getAttribute("notesParMatiere");
+
+        Map<String, Float> moyennes =
+            (Map<String, Float>) request.getAttribute("moyennes");
+
+        Float moyenneGenerale =
+            (Float) request.getAttribute("moyenneGenerale");
+
+        String statut = (moyenneGenerale != null && moyenneGenerale >= 10)
+                        ? "Admis" : "Rattrapage";
+        %>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-box">
+                <p>Moyenne Générale</p>
+                <h3><%= moyenneGenerale != null ? String.format("%.2f", moyenneGenerale) : "0.00" %></h3>
+            </div>
+
+            <div class="stat-box <%= (moyenneGenerale != null && moyenneGenerale >= 10) ? "success" : "danger" %>">
+                <p>Statut</p>
+                <h3><%= statut %></h3>
+            </div>
+        </div>
+
+        <% if(notesParMatiere != null && !notesParMatiere.isEmpty()){ %>
+
+        <!-- TABLE PAR MATIERE -->
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Matière</th>
+                    <th>CM</th>
+                    <th>TD</th>
+                    <th>TP</th>
+                    <th>Moyenne</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <%
+            for(String matiere : notesParMatiere.keySet()){
+
+                Map<String, Float> notes = notesParMatiere.get(matiere);
+
+                float cm = notes.getOrDefault("CM", 0f);
+                float td = notes.getOrDefault("TD", 0f);
+                float tp = notes.getOrDefault("TP", 0f);
+
+                float moyenne = moyennes.get(matiere);
+
+                String classe = moyenne >= 16 ? "note-good"
+                               : (moyenne >= 10 ? "note-medium" : "note-bad");
+            %>
+
+                <tr>
+                    <td><%= matiere %></td>
+                    <td><%= cm %></td>
+                    <td><%= td %></td>
+                    <td><%= tp %></td>
+                    <td class="<%= classe %>">
+                        <strong><%= String.format("%.2f", moyenne) %></strong>
+                    </td>
+                </tr>
+
+            <% } %>
+
+            </tbody>
+        </table>
+
+        <!-- BOUTON PDF -->
+        <div style="text-align:center; margin-top:20px;">
+            <a href="exportPDF">
+                <button class="form-button">Télécharger le bulletin PDF</button>
+            </a>
+        </div>
+
+        <% } else { %>
+
+            <div class="no-data">Aucune note disponible</div>
+
+        <% } %>
+
+    </div>
+</div>
+
 </body>
 </html>

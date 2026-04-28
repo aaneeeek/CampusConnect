@@ -78,12 +78,25 @@ public class Enseignant extends Personne{
 	}
 	
 	public void RemplirNote(String matricule, Float note, String id_groupe ) throws SQLException {
-		String sql = "UPDATE inscrire SET note = ? WHERE matricule = ? AND id_groupe = ? ";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setFloat(1, note);
-		stmt.setString(2, matricule);
-		stmt.setString(3, id_groupe);
-		stmt.executeUpdate();}
+		String sql = "UPDATE inscrire SET note = ? WHERE matricule = ? AND id_groupe = ?";
+	    PreparedStatement stmt = connection.prepareStatement(sql);
+
+	    stmt.setFloat(1, note);
+	    stmt.setString(2, matricule.trim());
+	    stmt.setString(3, id_groupe.trim());
+
+	    int rows = stmt.executeUpdate();
+
+	    System.out.println("UPDATE rows = " + rows);
+
+	    if(rows == 0){
+	        throw new SQLException("Aucune ligne mise à jour !");
+	    }
+		}
+	
+	
+	
+	
 	public ArrayList<Groupe> getGroupesCours() throws SQLException{
 		ArrayList<Groupe> groupes = new ArrayList();
 		String sql = "SELECT * FROM groupe WHERE id_enseignant = ?";

@@ -1,7 +1,100 @@
-.paragraph{
-    color:darkblue;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ── Liste pages (étudiants & enseignants) ──────────── */
+
+body {
+  padding: 0 20px 40px;
+}
+
+h1.paragraph {
+  font-size: 1.8rem !important;
+  margin: 32px auto 24px;
+  position: relative;
+  display: block;
+}
+h1.paragraph::after {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 7px auto 0;
+}
+
+/* ── Table wrapper ──────────────────────────────────── */
+table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  animation: fadeUp 0.45s ease both;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.91rem;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+thead {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+
+thead th {
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 14px 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+thead th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+thead th:last-child  { border-radius: 0 var(--radius-lg) 0 0; }
+
+/* Gold accent on last header column */
+thead th:last-child {
+  color: var(--gold-light);
+}
+
+/* ── Body rows ──────────────────────────────────────── */
+tbody tr {
+  border-bottom: 1px solid rgba(13, 31, 79, 0.07);
+  transition: background var(--transition);
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(201, 168, 76, 0.06); }
+
+tbody td {
+  padding: 13px 20px;
+  color: var(--navy);
+  vertical-align: middle;
+}
+
+/* Matricule / ID column — styled as badge */
+tbody td:first-child {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy-light);
+  letter-spacing: 0.04em;
+}
+
+/* ── Alternating rows ───────────────────────────────── */
+tbody tr:nth-child(even) {
+  background: rgba(13, 31, 79, 0.025);
+}
+tbody tr:nth-child(even):hover {
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  body { padding: 0 10px 30px; }
+  table { font-size: 0.82rem; }
+  thead th, tbody td { padding: 10px 12px; }
 }

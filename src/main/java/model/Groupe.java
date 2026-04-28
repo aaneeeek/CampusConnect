@@ -69,16 +69,22 @@ public class Groupe {
 		return this.idEnseignant;
 	}
 	
-	public ArrayList<String> getEtudiant() throws SQLException{
-		ArrayList<String> listeEtudiant = new ArrayList();
-		String sql = "SELECT etudiant.matricule FROM etudiant JOIN inscrire ON inscrire.matricule = etudiant.matricule AND inscrire.id_groupe = ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, idGroupe);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			listeEtudiant.add(rs.getString("matricule"));
-		}
-		return listeEtudiant;
+	public ArrayList<String> getEtudiant() throws SQLException {
+
+	    ArrayList<String> listeEtudiant = new ArrayList<>();
+
+	    String sql = "SELECT matricule FROM inscrire WHERE id_groupe = ?";
+	    PreparedStatement stmt = connection.prepareStatement(sql);
+
+	    stmt.setString(1, idGroupe);
+
+	    ResultSet rs = stmt.executeQuery();
+
+	    while (rs.next()) {
+	        listeEtudiant.add(rs.getString("matricule"));
+	    }
+
+	    return listeEtudiant;
 	}
 	
 	

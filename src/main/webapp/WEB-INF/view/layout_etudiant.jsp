@@ -4,6 +4,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="/static/css/meta.css">
+<link href="${pageContext.request.contextPath}/static/css/connexion_user.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/static/css/global.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/static/css/create_user.css" rel="stylesheet">
 <meta charset="UTF-8">
 </head>
 <body>

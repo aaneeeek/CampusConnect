@@ -1,25 +1,143 @@
-@charset "UTF-8";
-.content{
-    display: flex;
-    flex-direction: column;
-}
-.zer{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 25px;
+/* ── Espace Étudiant (meta.css) ─────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+:root {
+  --navy:       #0d1f4f;
+  --navy-mid:   #1a3370;
+  --navy-light: #2d50a0;
+  --gold:       #c9a84c;
+  --gold-light: #e8c97a;
+  --cream:      #f7f5f0;
+  --white:      #ffffff;
+  --muted:      #8a93b0;
+  --green:      #1d7a4e;
+  --green-light:#e6f4ee;
+  --shadow-md:  0 8px 32px rgba(13, 31, 79, 0.18);
+  --shadow-sm:  0 2px 12px rgba(13, 31, 79, 0.10);
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.mot a{
-   text-decoration : none;
-}
-.mot{
-    display: flex;
-   background-color: rgb(215, 250, 223);
-    justify-content: space-around;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-*{
-    margin: 0px;
-    gap:0px;
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--navy);
+}
+
+/* ── Page Layout ────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Hero Banner ────────────────────────────────────── */
+.zer {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 36px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.zer::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 220px;
+  height: 220px;
+  background: rgba(201, 168, 76, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.zer::after {
+  content: '';
+  position: absolute;
+  left: -30px;
+  bottom: -50px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.zer p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Navigation Bar ─────────────────────────────────── */
+.mot {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: var(--white);
+  border-bottom: 2px solid rgba(13, 31, 79, 0.08);
+  box-shadow: var(--shadow-sm);
+}
+
+.mot a {
+  text-decoration: none;
+  flex: 1;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(13, 31, 79, 0.07);
+  transition: background var(--transition), color var(--transition);
+}
+.mot a:last-child { border-right: none; }
+
+.mot a:hover {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.mot a p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--navy);
+  padding: 16px 8px;
+  transition: color var(--transition);
+}
+.mot a:hover p { color: var(--gold); }
+
+/* ── Content Area ───────────────────────────────────── */
+.der {
+  flex: 1;
+  padding: 32px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 600px) {
+  .zer p { font-size: 1.1rem; }
+  .mot { overflow-x: auto; }
+  .mot a { min-width: 100px; }
+  .der { padding: 20px 12px; }
 }

@@ -51,7 +51,7 @@
 			     
 			     %>
     		</tbody>
-    	
+    	</table>
         
     </body>
 </html>

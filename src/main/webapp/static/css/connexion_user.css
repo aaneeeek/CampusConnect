@@ -1,4 +1,31 @@
-.split_three{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+/* ── Connexion page — extends create_user card, adds specifics ── */
+
+/* Three-column radio grid for login type */
+.split_three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+/* Login card slight override — narrower */
+.middle-form {
+  max-width: 520px;
+}
+
+/* Decorative accent line under the title */
+.middle-form .paragraph::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 8px auto 0;
+}
+
+@media (max-width: 600px) {
+  .split_three {
+    grid-template-columns: 1fr;
+  }
 }
