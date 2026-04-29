@@ -15,20 +15,20 @@ function hideOccupiedSlots(){
 function resetSalleSlots(){
     document.querySelectorAll(`[data-name="salle"]`).forEach(salle => {
         if (salle.style.backgroundColor === "red"){
-            salle.style.backgroundColor = "bisque";
+            salle.style.backgroundColor = "white";
             salle.onclick = (event) => setSalle(salle.id);
         }
     });
 }
 
 function setSalle (salleId){
-    if (salle) document.querySelector(`[id="${salle}"][data-name="salle"]`).style.backgroundColor = "bisque";
+    if (salle) document.querySelector(`[id="${salle}"][data-name="salle"]`).style.backgroundColor = "white";
     document.querySelector(`[id="${salleId}"][data-name="salle"]`).style.backgroundColor = "green";
     salle = salleId;
 }
 
 function setGroupe (groupeId){
-    if (groupe) document.querySelector(`[data-name="groups"][id="`+ groupe + `"]`).style.backgroundColor = "rgb(130, 213, 130)";
+    if (groupe) document.querySelector(`[data-name="groups"][id="`+ groupe + `"]`).style.backgroundColor = "#d1fae5";
     document.querySelector(`[data-name="groups"][id="`+ groupeId + `"]`).style.backgroundColor = "darkgreen";
     groupe = groupeId;
 }
@@ -46,17 +46,17 @@ function setEnseignant(idEnseignant){
 }
 
 function setJour (journee){
-    if (jour) document.getElementById(jour).style.backgroundColor = "rgb(98, 136, 198)";
+    if (jour) document.getElementById(jour).style.backgroundColor = "#1e3a8a";
     document.getElementById(journee).style.backgroundColor = "darkblue";
     jour = journee;
     resetSalleSlots();
     hideOccupiedSlots();
 }
 const reset = ()=>{
-    if (salle) document.querySelector(`[id="${salle}"][data-name="salle"]`).style.backgroundColor = "bisque";
-    if (groupe) document.querySelector(`[data-name="groups"][id="`+ groupe + `"]`).style.backgroundColor = "rgb(130, 213, 130)";
+    if (salle) document.querySelector(`[id="${salle}"][data-name="salle"]`).style.backgroundColor = "white";
+    if (groupe) document.querySelector(`[data-name="groups"][id="`+ groupe + `"]`).style.backgroundColor = "#d1fae5";
     if (heure) document.getElementById(heure).style.backgroundColor = "aqua";
-    if (jour) document.getElementById(jour).style.backgroundColor = "rgb(98, 136, 198)";
+    if (jour) document.getElementById(jour).style.backgroundColor = "#1e3a8a";
     salle = "";
     jour = "";
     heure = "";

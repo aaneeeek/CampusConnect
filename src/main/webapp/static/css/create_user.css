@@ -1,11 +1,12 @@
 /* ── Card Form ──────────────────────────────────────── */
 .middle-form {
-  position: fixed;
+  /* position: fixed;
   top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0; */
+  
   max-width: 720px;
-  width: 92%;
+  width: 80%;
+  box-sizing: border-box;
   background: var(--white);
   box-shadow: var(--shadow-lg);
   border-radius: var(--radius-lg);
@@ -14,6 +15,8 @@
   animation: fadeUp 0.45s ease both;
   overflow-y: auto;
   max-height: calc(100vh - 80px);
+  /* transform: translate(50%, 0); */
+  margin: 100px auto;
 }
 
 /* Subtle watermark-like crest in the corner */

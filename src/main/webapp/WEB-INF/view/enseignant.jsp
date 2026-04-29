@@ -16,12 +16,12 @@
 </head>
 
 <body>
-
-<div class="middle-form" style="display:grid; grid-template-columns:1fr 1fr 1fr; width:780px; gap:15px;">
-
+<br><br>
+<div class="middle-form" style="display:grid; grid-template-columns:1fr 1fr 1fr; column-gap: 20px;">
+    
     <!-- GROUPE -->
     <div>
-        <label>Choisir Groupe</label>
+        <label>Choisir Groupe</label><br>
         <select onchange="showCorrespondant(this)" id="group-select">
             <option value="">-- Sélectionner --</option>
 
@@ -42,7 +42,7 @@
 
     <!-- ETUDIANTS -->
     <div>
-        <label>Étudiant</label>
+        <label>Étudiant</label><br>
 
         <%
         for(Groupe groupe : groupes){
@@ -70,7 +70,7 @@
     <!-- NOTE -->
     <div>
         <label>Note</label>
-        <input id="note" type="number" step="0.1" min="0" max="20" placeholder="Ex: 15.5" required>
+        <input style="padding:5px; border:1px solid #ccc; border-radius:4px;" id="note" type="number" step="0.1" min="0" max="20" placeholder="Ex: 15.5" required>
 
         <button type="button" onclick="save()" class="form-button" style="margin-top:10px;">
             Enregistrer

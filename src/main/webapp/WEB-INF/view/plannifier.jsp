@@ -109,7 +109,7 @@
 				console.log(e.target.id);
 				document.querySelectorAll(`[data-name="groups"]`).forEach(elt => {elt.style.display = "none"});
 				document.querySelectorAll('[data-id="' + e.target.id + '"]').forEach(elt => {elt.style.display = "inline-block"});
-				document.querySelectorAll(`[data-name="teacher"]`).forEach(elt => {elt.style.backgroundColor = "rgb(98, 136, 198)"});
+				document.querySelectorAll(`[data-name="teacher"]`).forEach(elt => {elt.style.backgroundColor = "#eef2ff"});
 				e.target.style.backgroundColor = 'darkblue';
 			}
 		</script>

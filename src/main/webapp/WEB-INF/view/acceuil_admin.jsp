@@ -41,14 +41,7 @@
                 </ul>
             </div>
 
-            <div class="main-elt">
-                <button class="elt">Gestion Salles</button>
-                <ul>
-                    <li>Liste des Salles</li>
-                    <li>Ajouter une Salle</li>
-                    </li>
-                </ul>
-            </div>
+            
         </div>
     </body>
 </html>

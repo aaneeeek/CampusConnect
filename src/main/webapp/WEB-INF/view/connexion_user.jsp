@@ -26,7 +26,7 @@
                         <input type="radio" name="type_compte" value="enseignant" required>
                     </div>
                     <div class="input-div" style="width: 65%;">
-                        <label>Compte Administrateur</label>
+                        <label>Compte Admin</label>
                         <input type="radio" name="type_compte" value="administrateur" required>
                     </div>
                 </div>
