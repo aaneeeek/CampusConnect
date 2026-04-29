@@ -134,6 +134,18 @@ public class Enseignant extends Personne{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public ArrayList<Seance> getProgramme() throws SQLException{
+		ArrayList<Seance> listeSeance = new ArrayList();
+		String sql = "SELECT heure, jour, id_salle, id_enseignant, inscrire.id_groupe FROM sceance JOIN inscrire ON sceance.id_groupe = inscrire.id_groupe JOIN groupe ON groupe.id_groupe = inscrire.id_groupe AND groupe.id_enseignant = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, idEnseignant);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			listeSeance.add(new Seance(rs.getTime("heure").toString(), rs.getString("jour"), rs.getString("id_groupe"), rs.getString("id_salle"), rs.getString("id_enseignant")));
+		}
+		return listeSeance;
+	}
 
 	
 

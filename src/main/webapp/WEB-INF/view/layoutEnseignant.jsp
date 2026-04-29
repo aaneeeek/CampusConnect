@@ -13,7 +13,7 @@
         </div>
 
         <div class="mot">
-          <a href="${pageContext.request.contextPath}/acceuilEnseignant?action=edt" ><p> VOIR EDT</p></a>
+          <a href="${pageContext.request.contextPath}/EDTEnseignant" ><p> VOIR EDT</p></a>
           <a href="${pageContext.request.contextPath}/acceuilEnseignant?action=remplir" ><p> REMPLIR NOTE</p></a>
         </div>
        <div class="der">

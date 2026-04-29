@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ page import="model.Etudiant, model.Seance, java.util.*" %>
+   <%@ page import="model.Enseignant, model.Seance, java.util.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,11 +21,11 @@
             <br>
 
             <div id="sc" style="width: 850px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
-            	<% Etudiant etudiant = (Etudiant) request.getSession().getAttribute("personne"); %>
+            	<% Enseignant enseignant = (Enseignant) request.getSession().getAttribute("personne"); %>
             	<script type="text/javascript">
                     const seances = [
                             <% 	
-                                for (Seance sc : etudiant.getProgramme()) { 
+                                for (Seance sc : enseignant.getProgramme()) { 
                             %>
                             {
                                 heure: "<%= sc.heure %>",
@@ -53,16 +53,11 @@
                                     document.getElementById("sc").innerHTML += `
                                         <div style="height: 100px; background-color: red; padding: 7px; border-radius: 5px;"></div>
                                     `;
-                                    console.log("not hello");
                                 }
                             }
                         }
                     }
-	            	
-            		
-            		
-            	</script>
-                
+                </script>
             </div>
         </div>
     </body>
